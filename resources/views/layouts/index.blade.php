@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Brancy - Cosmetic & Beauty Salon Website Template</title>
+    <title>COSRX Bangladesh Cosmetic & Beauty Salon Website</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="Brancy - Cosmetic & Beauty Salon Website Template">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -941,7 +941,7 @@
                             <div class="widget-item">
                                 <div class="widget-about">
                                     <a class="widget-logo" href="index.html">
-                                        <img src="{{asset('assets/images/logo.webp')}}" width="95" height="68" alt="Logo">
+                                        <img src="{{asset('assets/images/logo.png')}}" width="95" height="68" alt="Logo">
                                     </a>
                                     <p class="desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been.</p>
                                 </div>
