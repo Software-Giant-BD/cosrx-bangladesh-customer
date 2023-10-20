@@ -1,3 +1,4 @@
+@if (count($data)>0)
 <li class="has-submenu position-static"><a href="product.html">Skin Consern</a>
     <ul class="submenu-nav-mega">
         @foreach($data as $index => $item)
@@ -18,3 +19,10 @@
         @endforeach
     </ul>
 </li>
+@else
+    <li class="has-submenu"><a href="blog.html">Skin Consern</a>
+        <ul class="submenu-nav p-2">
+            <li>No items to display</li>
+        </ul>
+    </li>
+@endif
