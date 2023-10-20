@@ -1,4 +1,7 @@
 <aside class="product-cart-view-modal modal fade" id="action-QuickViewModal" tabindex="-1" aria-hidden="true">
+    @php
+        $quickViewProductRating = 5;
+    @endphp
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-body">
@@ -21,11 +24,13 @@
                                     <h3 class="product-details-title" id="quickViewProductTitle">Title Here</h3>
                                     <div class="product-details-review mb-5">
                                         <div class="product-review-icon">
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-half-o"></i>
+                                            @for($i=1;$i<=5;$i++)
+                                                @if ($i> $quickViewProductRating)
+                                                    <i class="fa fa-star-o"></i>
+                                                @else
+                                                    <i class="fa fa-star"></i>
+                                                @endif
+                                            @endfor
                                         </div>
                                         <button type="button" class="product-review-show" id="quickViewProductReviewCount">0 reviews</button>
                                     </div>

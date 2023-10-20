@@ -417,6 +417,8 @@
             var product = $(this).data('product');
             var adminUrl = "{{ env('Admin_url') }}";
             var productImage = adminUrl + product.image;
+            @php $quickViewProductRating = "5" @endphp
+            
             $("#quickViewProductImage").attr('src', productImage);
             $("#quickViewProductTitle").text(product.name);
             $("#quickViewProductReviewCount").text(product.review_count);
