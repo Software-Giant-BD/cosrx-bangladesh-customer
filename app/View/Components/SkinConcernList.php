@@ -23,7 +23,7 @@ class SkinConcernList extends Component
      */
     public function render(): View|Closure|string
     {
-        $data = Cache::remember('skin_concerns', 120, function () {
+        $data = Cache::remember('skin_concern', 120, function () {
             return SkinConcern::select("id","name","slug")
             ->limit(50)
             ->get();
