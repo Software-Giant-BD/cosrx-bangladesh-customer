@@ -43,7 +43,6 @@
                                     data-bs-target="#action-CartAddModal">
                                     <span>Add to cart</span>
                                 </button>
-                                {{Log::debug($item)}}
                                 <button type="button" data-product="{{ json_encode($item) }}" class="product-action-btn action-btn-quick-view"
                                     data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
                                     <i class="fa fa-expand"></i>
@@ -53,8 +52,8 @@
                                     <i class="fa fa-heart-o"></i>
                                 </button>
                             </div>
-                            {{-- <div class="product-action-bottom">
-                                <button type="button" data-product="{{ json_encode($item->name) }}" class="product-action-btn action-btn-quick-view" 
+                            <div class="product-action-bottom">
+                                <button type="button" data-product="{{ json_encode($item) }}" class="product-action-btn action-btn-quick-view" 
                                     data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
                                     <i class="fa fa-expand"></i>
                                 </button>
@@ -66,7 +65,7 @@
                                     data-bs-target="#action-CartAddModal">
                                     <span>Add to cart</span>
                                 </button>
-                            </div> --}}
+                            </div>
                         </div>
                     </div>
                     <!--== End prPduct Item ==-->
