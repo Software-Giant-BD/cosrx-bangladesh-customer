@@ -2,15 +2,15 @@
 <li class="has-submenu position-static"><a href="product.html">Skin Consern</a>
     <ul class="submenu-nav-mega">
         @foreach($data as $index => $item)
-            @if ($index % 3 == 0)
-                @if ($index>0)
-                    </ul>
+            @if ($index % 7 == 0)
+                @if ($index>0)  {{-- close previous li and ul --}}
+                    </ul>  
                 </li>
                 @endif
                 <li>
                     <ul>
                         <li><a href="#">{{$item->name}}</a></li>
-            @elseif($index == count($data)-1)
+            @elseif($index == count($data)-1) {{-- close last li and ul --}}
                 </ul>
             </li>
             @else

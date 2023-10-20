@@ -25,7 +25,7 @@ class SkinConcernList extends Component
     {
         $data = Cache::remember('skin_concerns', 120, function () {
             return SkinConcern::select("id","name","slug")
-            ->limit(6)
+            ->limit(50)
             ->get();
         });
         return view('components.skin-concern-list',compact('data'));
