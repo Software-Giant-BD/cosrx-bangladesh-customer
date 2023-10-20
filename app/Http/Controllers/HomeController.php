@@ -9,9 +9,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $data['best_products'] = Product::withCount("review")
+        $data['best_products'] = Product::published()->withCount("review")
                                 ->where('top_deal', 'Yes')
-                                ->where("published","Yes")
                                 ->get();
         return view("home.index",compact("data"));
     }
