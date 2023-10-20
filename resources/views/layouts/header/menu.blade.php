@@ -4,7 +4,9 @@
                             <li class="has-submenu"><a href="index.html">Featured Now</a>
                             </li>
                             <x-category-list />
-                            <li class="has-submenu position-static"><a href="product.html">Skin Consern</a>
+                            <x-skin-concern-list />
+
+                            {{-- <li class="has-submenu position-static"><a href="product.html">Skin Consern</a>
                                 <ul class="submenu-nav-mega">
                                     <li><a href="#/" class="mega-title">Shop Layout</a>
                                         <ul>
@@ -32,7 +34,7 @@
                                         </ul>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> --}}
                             <li class="has-submenu"><a href="blog.html">Ingredient</a>
                                 <ul class="submenu-nav">
                                     <li class="has-submenu"><a href="#/">Blog Layout</a>
