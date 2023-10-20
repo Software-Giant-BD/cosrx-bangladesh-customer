@@ -25,7 +25,6 @@ class CategoryList extends Component
             ->limit(20)
             ->get();
         });
-        Log::debug($data);
         return view('components.category-list',compact('data'));
     }
 }

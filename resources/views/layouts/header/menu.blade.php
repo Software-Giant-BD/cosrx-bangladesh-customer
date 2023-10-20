@@ -5,7 +5,7 @@
                             </li>
                             <x-category-list />
                             <x-skin-concern-list />
-
+                            <x-ingredient-list />
                             {{-- <li class="has-submenu position-static"><a href="product.html">Skin Consern</a>
                                 <ul class="submenu-nav-mega">
                                     <li><a href="#/" class="mega-title">Shop Layout</a>
@@ -35,7 +35,7 @@
                                     </li>
                                 </ul>
                             </li> --}}
-                            <li class="has-submenu"><a href="blog.html">Ingredient</a>
+                            {{-- <li class="has-submenu"><a href="blog.html">Ingredient</a>
                                 <ul class="submenu-nav">
                                     <li class="has-submenu"><a href="#/">Blog Layout</a>
                                         <ul class="submenu-nav">
@@ -46,7 +46,7 @@
                                     </li>
                                     <li><a href="blog-details.html">Blog Details</a></li>
                                 </ul>
-                            </li>
+                            </li> --}}
                             <li class="has-submenu"><a href="account-login.html">Rewards</a>
                                 <ul class="submenu-nav">
                                     <li><a href="account-login.html">My Account</a></li>
