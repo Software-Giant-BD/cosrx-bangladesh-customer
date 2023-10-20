@@ -43,7 +43,8 @@
                                     data-bs-target="#action-CartAddModal">
                                     <span>Add to cart</span>
                                 </button>
-                                <button type="button" class="product-action-btn action-btn-quick-view"
+                                {{Log::debug($item)}}
+                                <button type="button" data-product="{{ json_encode($item) }}" class="product-action-btn action-btn-quick-view"
                                     data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
                                     <i class="fa fa-expand"></i>
                                 </button>
@@ -52,8 +53,8 @@
                                     <i class="fa fa-heart-o"></i>
                                 </button>
                             </div>
-                            <div class="product-action-bottom">
-                                <button type="button" class="product-action-btn action-btn-quick-view"
+                            {{-- <div class="product-action-bottom">
+                                <button type="button" data-product="{{ json_encode($item->name) }}" class="product-action-btn action-btn-quick-view" 
                                     data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
                                     <i class="fa fa-expand"></i>
                                 </button>
@@ -65,246 +66,12 @@
                                     data-bs-target="#action-CartAddModal">
                                     <span>Add to cart</span>
                                 </button>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <!--== End prPduct Item ==-->
                 </div>
             @endforeach
-
-
-            {{-- <div class="col-6 col-lg-4 mb-4 mb-sm-9">
-                <!--== Start Product Item ==-->
-                <div class="product-item product-st2-item">
-                    <div class="product-thumb">
-                        <a class="d-block" href="product-details.html">
-                            <img src="{{ asset('assets/images/shop/4.webp') }}" width="370" height="450"
-                                alt="Image-HasTech">
-                        </a>
-                        <span class="flag-new">new</span>
-                    </div>
-                    <div class="product-info">
-                        <div class="product-rating">
-                            <div class="rating">
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-half-o"></i>
-                            </div>
-                            <div class="reviews">150 reviews</div>
-                        </div>
-                        <h4 class="title"><a href="product-details.html">Voyage face cleaner</a></h4>
-                        <div class="prices">
-                            <span class="price">$210.00</span>
-                            <span class="price-old">300.00</span>
-                        </div>
-                        <div class="product-action">
-                            <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal"
-                                data-bs-target="#action-CartAddModal">
-                                <span>Add to cart</span>
-                            </button>
-                            <button type="button" class="product-action-btn action-btn-quick-view"
-                                data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                <i class="fa fa-expand"></i>
-                            </button>
-                            <button type="button" class="product-action-btn action-btn-wishlist" data-bs-toggle="modal"
-                                data-bs-target="#action-WishlistModal">
-                                <i class="fa fa-heart-o"></i>
-                            </button>
-                        </div>
-                        <div class="product-action-bottom">
-                            <button type="button" class="product-action-btn action-btn-quick-view"
-                                data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                <i class="fa fa-expand"></i>
-                            </button>
-                            <button type="button" class="product-action-btn action-btn-wishlist"
-                                data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                <i class="fa fa-heart-o"></i>
-                            </button>
-                            <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal"
-                                data-bs-target="#action-CartAddModal">
-                                <span>Add to cart</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <!--== End prPduct Item ==-->
-            </div>
-            <div class="col-6 col-lg-4 mb-4 mb-sm-9">
-                <!--== Start Product Item ==-->
-                <div class="product-item product-st2-item">
-                    <div class="product-thumb">
-                        <a class="d-block" href="product-details.html">
-                            <img src="{{ asset('assets/images/shop/3.webp') }}" width="370" height="450"
-                                alt="Image-HasTech">
-                        </a>
-                        <span class="flag-new">new</span>
-                    </div>
-                    <div class="product-info">
-                        <div class="product-rating">
-                            <div class="rating">
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-half-o"></i>
-                            </div>
-                            <div class="reviews">150 reviews</div>
-                        </div>
-                        <h4 class="title"><a href="product-details.html">Impulse Duffle</a></h4>
-                        <div class="prices">
-                            <span class="price">$210.00</span>
-                            <span class="price-old">300.00</span>
-                        </div>
-                        <div class="product-action">
-                            <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal"
-                                data-bs-target="#action-CartAddModal">
-                                <span>Add to cart</span>
-                            </button>
-                            <button type="button" class="product-action-btn action-btn-quick-view"
-                                data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                <i class="fa fa-expand"></i>
-                            </button>
-                            <button type="button" class="product-action-btn action-btn-wishlist"
-                                data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                <i class="fa fa-heart-o"></i>
-                            </button>
-                        </div>
-                        <div class="product-action-bottom">
-                            <button type="button" class="product-action-btn action-btn-quick-view"
-                                data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                <i class="fa fa-expand"></i>
-                            </button>
-                            <button type="button" class="product-action-btn action-btn-wishlist"
-                                data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                <i class="fa fa-heart-o"></i>
-                            </button>
-                            <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal"
-                                data-bs-target="#action-CartAddModal">
-                                <span>Add to cart</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <!--== End prPduct Item ==-->
-            </div>
-            <div class="col-6 col-lg-4 mb-4 mb-sm-9">
-                <!--== Start Product Item ==-->
-                <div class="product-item product-st2-item">
-                    <div class="product-thumb">
-                        <a class="d-block" href="product-details.html">
-                            <img src="{{ asset('assets/images/shop/7.webp') }}" width="370" height="450"
-                                alt="Image-HasTech">
-                        </a>
-                        <span class="flag-new">new</span>
-                    </div>
-                    <div class="product-info">
-                        <div class="product-rating">
-                            <div class="rating">
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-half-o"></i>
-                            </div>
-                            <div class="reviews">150 reviews</div>
-                        </div>
-                        <h4 class="title"><a href="product-details.html">Sprite Yoga Straps1</a></h4>
-                        <div class="prices">
-                            <span class="price">$210.00</span>
-                            <span class="price-old">300.00</span>
-                        </div>
-                        <div class="product-action">
-                            <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal"
-                                data-bs-target="#action-CartAddModal">
-                                <span>Add to cart</span>
-                            </button>
-                            <button type="button" class="product-action-btn action-btn-quick-view"
-                                data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                <i class="fa fa-expand"></i>
-                            </button>
-                            <button type="button" class="product-action-btn action-btn-wishlist"
-                                data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                <i class="fa fa-heart-o"></i>
-                            </button>
-                        </div>
-                        <div class="product-action-bottom">
-                            <button type="button" class="product-action-btn action-btn-quick-view"
-                                data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                <i class="fa fa-expand"></i>
-                            </button>
-                            <button type="button" class="product-action-btn action-btn-wishlist"
-                                data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                <i class="fa fa-heart-o"></i>
-                            </button>
-                            <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal"
-                                data-bs-target="#action-CartAddModal">
-                                <span>Add to cart</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <!--== End prPduct Item ==-->
-            </div>
-            <div class="col-6 col-lg-4 mb-4 mb-sm-9">
-                <!--== Start Product Item ==-->
-                <div class="product-item product-st2-item">
-                    <div class="product-thumb">
-                        <a class="d-block" href="product-details.html">
-                            <img src="{{ asset('assets/images/shop/6.webp') }}" width="370" height="450"
-                                alt="Image-HasTech">
-                        </a>
-                        <span class="flag-new">new</span>
-                    </div>
-                    <div class="product-info">
-                        <div class="product-rating">
-                            <div class="rating">
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-half-o"></i>
-                            </div>
-                            <div class="reviews">150 reviews</div>
-                        </div>
-                        <h4 class="title"><a href="product-details.html">Fusion facial cream</a></h4>
-                        <div class="prices">
-                            <span class="price">$210.00</span>
-                            <span class="price-old">300.00</span>
-                        </div>
-                        <div class="product-action">
-                            <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal"
-                                data-bs-target="#action-CartAddModal">
-                                <span>Add to cart</span>
-                            </button>
-                            <button type="button" class="product-action-btn action-btn-quick-view"
-                                data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                <i class="fa fa-expand"></i>
-                            </button>
-                            <button type="button" class="product-action-btn action-btn-wishlist"
-                                data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                <i class="fa fa-heart-o"></i>
-                            </button>
-                        </div>
-                        <div class="product-action-bottom">
-                            <button type="button" class="product-action-btn action-btn-quick-view"
-                                data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
-                                <i class="fa fa-expand"></i>
-                            </button>
-                            <button type="button" class="product-action-btn action-btn-wishlist"
-                                data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
-                                <i class="fa fa-heart-o"></i>
-                            </button>
-                            <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal"
-                                data-bs-target="#action-CartAddModal">
-                                <span>Add to cart</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <!--== End prPduct Item ==-->
-            </div> --}}
         </div>
     </div>
 </section>

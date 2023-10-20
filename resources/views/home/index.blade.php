@@ -409,3 +409,14 @@
     </section>
     <!--== End News Letter Area Wrapper ==-->
 @endsection
+
+@section("js")
+<script>
+    $( document ).ready(function() {
+        $(".action-btn-quick-view").click(function(){
+            var product = $(this).data('product');
+            console.log(product.code);
+        });
+    });
+</script>
+@endsection
