@@ -98,7 +98,18 @@
                                     <li><a href="index-two.html">Home Two</a></li>
                                 </ul>
                             </li>
-                            <li><a href="about-us.html">Product Type</a></li>
+                            <li class="has-submenu"><a href="blog.html">Product Type</a>
+                                <ul class="submenu-nav">
+                                    <li class="has-submenu"><a href="#/">Blog Layout</a>
+                                        <ul class="submenu-nav">
+                                            <li><a href="blog.html">Blog Grid</a></li>
+                                            <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
+                                            <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="blog-details.html">Blog Details</a></li>
+                                </ul>
+                            </li>
                             <li class="has-submenu position-static"><a href="product.html">Skin Consern</a>
                                 <ul class="submenu-nav-mega">
                                     <li><a href="#/" class="mega-title">Shop Layout</a>
