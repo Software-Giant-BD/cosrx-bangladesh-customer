@@ -415,7 +415,13 @@
     $( document ).ready(function() {
         $(".action-btn-quick-view").click(function(){
             var product = $(this).data('product');
-            console.log(product.code);
+            var adminUrl = "{{ env('Admin_url') }}";
+            var productImage = adminUrl + product.image;
+            $("#quickViewProductImage").attr('src', productImage);
+            $("#quickViewProductTitle").text(product.name);
+            $("#quickViewProductReviewCount").text(product.review_count);
+            $("#quickViewProductDetails").text(product.short_description);
+            $("#quickViewProductDiscount").text(`৳ ${product.discount}`);
         });
     });
 </script>

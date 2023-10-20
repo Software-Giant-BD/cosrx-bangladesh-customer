@@ -33,7 +33,7 @@
                                 </div>
                                 <div class="reviews">{{$item->review_count}} reviews</div>
                             </div>
-                            <h4 class="title"><a href="product-details.html">{{$item->title}}h</a></h4>
+                            <h4 class="title"><a href="product-details.html">{{$item->name}}h</a></h4>
                             <div class="prices">
                                 <span class="price">৳{{$item->discount}}</span>
                                 <span class="price-old">৳{{$item->price}}</span>
