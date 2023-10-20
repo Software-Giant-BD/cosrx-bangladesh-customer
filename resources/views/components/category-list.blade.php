@@ -1,5 +1,5 @@
 @if (count($data)>0)
-    <li class="has-submenu position-static"><a href="product.html">Product Type</a>
+    <li class="has-submenu position-static"><a href="{{route('category.products')}}">Product Type</a>
         <ul class="submenu-nav-mega">
             @foreach($data as $index => $item)
                 @if ($index % 7 == 0)
@@ -9,12 +9,12 @@
                     @endif
                     <li>
                         <ul>
-                            <li><a href="#">{{$item->name}}</a></li>
+                            <li><a href="{{route('category.products',['slug'=>$item->slug])}}">{{$item->name}}</a></li>
                 @elseif($index == count($data)-1) {{-- close last li and ul --}}
                     </ul>
                 </li>
                 @else
-                    <li><a href="#">{{$item->name}}</a></li>
+                    <li><a href="{{route('category.products',['slug'=>$item->slug])}}">{{$item->name}}</a></li>
                 @endif
             @endforeach
         </ul>
