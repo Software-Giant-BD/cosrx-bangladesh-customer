@@ -8,7 +8,7 @@
             <div class="row align-items-center desktop-only">
                 <div class="col-lg-2 col-xl-2">
                     <div class="header-logo">
-                        <a href="index.html">
+                        <a href="{{route("home")}}">
                             <img class="logo-main" src="{{ asset('assets/images/logo.png') }}" width="95"
                                 height="68" alt="Logo" />
                         </a>
