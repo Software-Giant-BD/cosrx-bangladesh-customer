@@ -38,12 +38,11 @@
         <div class="row">
             <div class="col-12">
                 <div class="section-title">
-                    <h2 class="title">Category Wise Product</h2>
-                    <p class="m-0">{{$category->mdescription}}</p>
+                    <h2 class="title">{{$category? $category->name : "Category Wise"}} Products</h2>
+                    <p class="m-0">{{$category?->mdescription}}</p>
                 </div>
             </div>
         </div>
-      
     </div>
 </section>
 @endsection
