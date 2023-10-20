@@ -8,12 +8,12 @@
                 @endif
                 <li>
                     <ul>
-                        <li><a href="product.html">Shop 3 Column</a></li>
+                        <li><a href="#">{{$item->name}}</a></li>
             @elseif($index == count($data)-1)
                 </ul>
             </li>
             @else
-                <li><a href="product.html">Shop 3 Column</a></li>
+                <li><a href="#">{{$item->name}}</a></li>
             @endif
         @endforeach
     </ul>
