@@ -44,6 +44,16 @@ class Product extends Model
         'updated_by',
     ];
 
+    public function scopePublished($query)
+    {
+        return $query->where('published', "Yes");
+    }
+
+    public function review()
+    {
+        return $this->hasMany(ProductReview::class);
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class)->withTrashed();
