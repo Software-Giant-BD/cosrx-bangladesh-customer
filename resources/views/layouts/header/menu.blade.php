@@ -3,13 +3,7 @@
                         <ul class="main-nav justify-content-center">
                             <li class="has-submenu"><a href="index.html">Featured Now</a>
                             </li>
-                            <li class="has-submenu"><a href="blog.html">Product Type</a>
-                                <ul class="submenu-nav">
-                                    <li><a href="blog-details.html">Blog Details</a></li>
-                                    <li><a href="blog-details.html">Blog Details</a></li>
-
-                                </ul>
-                            </li>
+                            <x-category-list />
                             <li class="has-submenu position-static"><a href="product.html">Skin Consern</a>
                                 <ul class="submenu-nav-mega">
                                     <li><a href="#/" class="mega-title">Shop Layout</a>
