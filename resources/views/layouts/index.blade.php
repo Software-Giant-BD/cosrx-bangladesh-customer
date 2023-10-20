@@ -3,7 +3,7 @@
 
 <body>
     <div class="wrapper">
-        @include('layouts.header')
+        @include('layouts.header.index')
         <main class="main-content">
             @yield('main')
         </main>
