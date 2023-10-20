@@ -18,8 +18,11 @@ class CategoryList extends Component
    
     public function render(): View|Closure|string
     {
-        $categories = Cache::remember('categories', 120, function () {
-            return Category::all();
+        $categories = Cache::remember('cate', 120, function () {
+            return Category::whereNull("parent_id")
+            ->select("id","name","slug")
+            ->limit(20)
+            ->get();
         });
         return view('components.category-list',compact('categories'));
     }
