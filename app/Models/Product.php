@@ -43,6 +43,10 @@ class Product extends Model
         'created_by',
         'updated_by',
     ];
+    public function review()
+    {
+        return $this->hasMany(ProductReview::class);
+    }
 
     public function category()
     {
