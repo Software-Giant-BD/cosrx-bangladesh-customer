@@ -96,7 +96,6 @@ class CartController extends Controller
         $cart = session('cart');
         $cart[$data['product_id']] = $data;
         session()->put('cart', $cart);
-        Log::info("Onfd");
     }
 
     public function store(Request $request)
@@ -105,7 +104,6 @@ class CartController extends Controller
         $result['mgs'] = 'Product added to cart';
         $result['isExist'] = false;
         $result['new_item'] = null;
-        Log::info("stoee");
         DB::beginTransaction();
         try {
             if (empty($request->product_id)) {
