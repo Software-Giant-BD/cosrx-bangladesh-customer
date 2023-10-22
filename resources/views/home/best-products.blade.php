@@ -39,15 +39,15 @@
                                 <span class="price-old">৳{{$item->price}}</span>
                             </div>
                             <div class="product-action">
-                                <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal"
-                                    data-bs-target="#action-CartAddModal">
+                                <button type="button" class="product-action-btn action-btn-cart cart_add_btn" data-bs-toggle="modal"
+                                    data-bs-target="#action-CartAddModal" data-qty="1" data-product_id="{{ $item->id }}">
                                     <span>Add to cart</span>
                                 </button>
                                 <button type="button" data-product="{{ json_encode($item) }}" class="product-action-btn action-btn-quick-view"
                                     data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
                                     <i class="fa fa-expand"></i>
                                 </button>
-                                <button type="button" class="product-action-btn action-btn-wishlist"
+                                <button type="button" class="product-action-btn action-btn-wishlist wish_add_btn"
                                     data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
                                     <i class="fa fa-heart-o"></i>
                                 </button>
@@ -57,12 +57,12 @@
                                     data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
                                     <i class="fa fa-expand"></i>
                                 </button>
-                                <button type="button" class="product-action-btn action-btn-wishlist"
+                                <button type="button" class="product-action-btn action-btn-wishlist wish_add_btn"
                                     data-bs-toggle="modal" data-bs-target="#action-WishlistModal">
                                     <i class="fa fa-heart-o"></i>
                                 </button>
-                                <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal"
-                                    data-bs-target="#action-CartAddModal">
+                                <button type="button" class="product-action-btn action-btn-cart cart_add_btn" data-bs-toggle="modal"
+                                    data-bs-target="#action-CartAddModal" data-qty="1" data-product_id="{{ $item->id }}">
                                     <span>Add to cart</span>
                                 </button>
                             </div>
