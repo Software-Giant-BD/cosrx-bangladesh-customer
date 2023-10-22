@@ -8,20 +8,28 @@
             <div class="row align-items-center desktop-only">
                 <div class="col-lg-2 col-xl-2">
                     <div class="header-logo">
-                        <a href="{{route("home")}}">
+                        <a href="{{ route('home') }}">
                             <img class="logo-main" src="{{ asset('assets/images/logo.png') }}" width="95"
                                 height="68" alt="Logo" />
                         </a>
                     </div>
                 </div>
-                @include("layouts.header.menu")
+                @include('layouts.header.menu')
                 <div class="col-lg-3 col-xl-3">
                     <div class="header-action justify-content-evenly">
-                        <a class="header-action-btn" href="account-login.html">
-                            <span class="icon">
-                                Account
-                            </span>
-                        </a>
+                        @if (session('login') == 'True')
+                            <a class="header-action-btn" href="{{ route('account.personal.info') }}">
+                                <span class="icon">
+                                    Account
+                                </span>
+                            </a>
+                        @else
+                            <a class="header-action-btn" href="{{ route('login.reg.create') }}">
+                                <span class="icon">
+                                    Sign In or Sign Up
+                                </span>
+                            </a>
+                        @endif
                         <button class="header-action-btn ms-0 d-flex justify-content-between" type="button"
                             data-bs-toggle="offcanvas" data-bs-target="#AsideOffcanvasSearch"
                             aria-controls="AsideOffcanvasSearch">
