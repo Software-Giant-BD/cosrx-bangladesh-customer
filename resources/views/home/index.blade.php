@@ -439,4 +439,5 @@
         });
     });
 </script>
+    @include('add-cart-and-wish')
 @endsection
