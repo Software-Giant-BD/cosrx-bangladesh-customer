@@ -54,8 +54,8 @@ class ProductRepository extends Repository implements IProductRepository
     {
         $textLike = '%'.$text.'%';
         $result = $this->modelName::select(
-                'id', 'code', 'name', 'price', 'discount as discount_amount', \DB::raw('(discount / price) * 100 AS discount'), 'rating', 'mtitle', 'mkeyword', 'mdescription', DB::raw("CONCAT('$this->adminUrl',image) AS image")
-            )
+            'id', 'code', 'name', 'price', 'discount as discount_amount', \DB::raw('(discount / price) * 100 AS discount'), 'rating', 'mtitle', 'mkeyword', 'mdescription', DB::raw("CONCAT('$this->adminUrl',image) AS image")
+        )
             ->where('name', 'like', $textLike)
             ->orWhere('code', $text)
             ->orWhere('short_description', 'like', $textLike)
@@ -88,7 +88,7 @@ class ProductRepository extends Repository implements IProductRepository
         $query = $this->modelName::select(
             'id', 'code', 'name', 'price', 'discount as discount_amount', \DB::raw('(discount / price) * 100 AS discount'), 'rating', 'mtitle', 'mkeyword', 'mdescription', DB::raw("CONCAT('$this->adminUrl',image) AS image")
         )
-        ->orderBy('name');
+            ->orderBy('name');
         if (isset($data['category_id']) && $data['category_id'] > 0) {
             $query = $query->orWhereHas('category', function ($query) use ($data) {
                 $query->where('id', $data['category_id']);
@@ -203,12 +203,12 @@ class ProductRepository extends Repository implements IProductRepository
     {
         return Product::whereIn('id', function ($query) {
             $query->select('product_id')
-            ->from('orders')
-            ->orderBy('created_at', 'desc');
+                ->from('orders')
+                ->orderBy('created_at', 'desc');
         })
-        ->orWhereRaw('1 = 1')->skip($skip)->take($take)
-        ->orderBy(DB::raw('CASE WHEN id IN (SELECT product_id FROM orders ORDER BY created_at DESC) THEN 1 ELSE 2 END'), 'asc')
-        ->get();
+            ->orWhereRaw('1 = 1')->skip($skip)->take($take)
+            ->orderBy(DB::raw('CASE WHEN id IN (SELECT product_id FROM orders ORDER BY created_at DESC) THEN 1 ELSE 2 END'), 'asc')
+            ->get();
     }
 
     public function totalProductCount()
@@ -270,14 +270,14 @@ class ProductRepository extends Repository implements IProductRepository
             'mdescription',
             DB::raw("CONCAT('$this->adminUrl',image) AS image")
         )
-        ->whereIn('id', function ($query) {
-            $query->select('product_id')
-            ->from('orders')
-            ->orderBy('created_at', 'desc');
-        })
-        ->orWhereRaw('1 = 1')->skip($skip)->take($take)
-        ->orderBy(DB::raw('CASE WHEN id IN (SELECT product_id FROM orders ORDER BY created_at DESC) THEN 1 ELSE 2 END'), 'asc')
-        ->get();
+            ->whereIn('id', function ($query) {
+                $query->select('product_id')
+                    ->from('orders')
+                    ->orderBy('created_at', 'desc');
+            })
+            ->orWhereRaw('1 = 1')->skip($skip)->take($take)
+            ->orderBy(DB::raw('CASE WHEN id IN (SELECT product_id FROM orders ORDER BY created_at DESC) THEN 1 ELSE 2 END'), 'asc')
+            ->get();
     }
 
     public function randomOrderForApi($take = 10)
@@ -294,7 +294,7 @@ class ProductRepository extends Repository implements IProductRepository
             'mdescription',
             DB::raw("CONCAT('$this->adminUrl',image) AS image")
         )
-        ->inRandomOrder()->limit($take)->get();
+            ->inRandomOrder()->limit($take)->get();
     }
 
     public function relatedProducts($product_id)
@@ -311,9 +311,9 @@ class ProductRepository extends Repository implements IProductRepository
             'products.mdescription',
             DB::raw("CONCAT('$this->adminUrl',image) AS image")
         )
-        ->join('products', 'related_products', '=', 'products.id')
-        ->where('related_for', $product_id)
-        ->get();
+            ->join('products', 'related_products', '=', 'products.id')
+            ->where('related_for', $product_id)
+            ->get();
     }
 
     public function apiAllProduct()
@@ -330,6 +330,6 @@ class ProductRepository extends Repository implements IProductRepository
             'mdescription',
             DB::raw("CONCAT('$this->adminUrl',image) AS image")
         )
-        ->get();
+            ->get();
     }
 }

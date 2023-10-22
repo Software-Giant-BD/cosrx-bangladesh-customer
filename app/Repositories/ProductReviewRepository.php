@@ -35,8 +35,8 @@ class ProductReviewRepository extends Repository implements IProductReviewReposi
     public function productWiseReviewForApi($product_id)
     {
         return $this->modelName::with(['customer' => function ($query) {
-                $query->select('id', 'name', 'email');
-            }])
+            $query->select('id', 'name', 'email');
+        }])
             ->select('id', 'product_id', 'customer_id', 'star', 'title', 'review', 'created_at')
             ->where('product_id', $product_id)->orderBy('id', 'desc')->take(10)->get();
     }

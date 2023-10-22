@@ -23,13 +23,13 @@ class InvoiceRepository extends Repository implements IInvoiceRepository
     public function myOrders($customer_id)
     {
         return $this->modelName::select('id', 'customer_id', 'invoice', 'name', 'mobile', 'email', 'full_address', 'coupon_discount', 'delivery_charge', 'total_amt', 'total_item', 'status', 'created_at')
-        ->where('customer_id', $customer_id)->orderBy('created_at', 'desc')->get();
+            ->where('customer_id', $customer_id)->orderBy('created_at', 'desc')->get();
     }
 
     public function invoiceWiseInfo($invoice)
     {
         return $this->modelName::select('id', 'customer_id', 'invoice', 'name', 'mobile', 'email', 'full_address', 'coupon_discount', 'delivery_charge', 'total_amt', 'total_item', 'status', 'created_at')
-        ->where('invoice', $invoice)->first();
+            ->where('invoice', $invoice)->first();
     }
 
     public function updateByDoc_no($data, $doc_no)

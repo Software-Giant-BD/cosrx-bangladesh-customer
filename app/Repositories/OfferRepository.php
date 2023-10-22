@@ -21,7 +21,7 @@ class OfferRepository extends Repository implements IOfferRepository
     public function offerList()
     {
         return $this->modelName::select('id', 'name', 'discount_percentage', 'start_date', 'end_date', DB::raw("CONCAT('$this->adminUrl',image) AS image"))
-        ->where('published', 'Yes')
-        ->get();
+            ->where('published', 'Yes')
+            ->get();
     }
 }

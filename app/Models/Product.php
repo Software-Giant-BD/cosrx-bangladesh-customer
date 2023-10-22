@@ -46,7 +46,7 @@ class Product extends Model
 
     public function scopePublished($query)
     {
-        return $query->where('published', "Yes");
+        return $query->where('published', 'Yes');
     }
 
     public function review()

@@ -10,7 +10,7 @@ use App\Http\Controllers\SkinConcernController;
 use App\Http\Controllers\WishController;
 use Illuminate\Support\Facades\Route;
 
-Route::get("/", [HomeController::class, "index"])->name("home");
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'category', 'as' => 'category.'], function () {
     Route::get('products/{slug?}', [CategoryController::class, 'categoryWiseProduct'])->name('products');

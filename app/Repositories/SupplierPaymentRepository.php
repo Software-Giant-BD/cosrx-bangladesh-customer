@@ -22,8 +22,8 @@ class SupplierPaymentRepository extends Repository implements ISupplierPaymentRe
     public function getSingleSupplierAmount($supplier_id)
     {
         return SupplierPayment::select(DB::raw('sum(amount*sign) as amount'))
-        ->where('supplier_id', $supplier_id)
-        ->where('isCountAble', 1)->first();
+            ->where('supplier_id', $supplier_id)
+            ->where('isCountAble', 1)->first();
     }
 
     public function filterPayment($data)

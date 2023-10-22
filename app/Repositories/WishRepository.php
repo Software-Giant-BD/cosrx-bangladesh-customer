@@ -53,9 +53,9 @@ class WishRepository extends Repository implements IWishRepository
     public function getUserWishForApi($customer_id)
     {
         return DB::table('wish_lists')
-         ->join('products', 'products.id', '=', 'wish_lists.product_id')
-         ->where('customer_id', $customer_id)
-         ->select('wish_lists.id', 'customer_id', 'product_id', 'name', 'wish_lists.price', 'code', DB::raw("CONCAT('$this->adminUrl',image) AS image"))
-         ->get();
+            ->join('products', 'products.id', '=', 'wish_lists.product_id')
+            ->where('customer_id', $customer_id)
+            ->select('wish_lists.id', 'customer_id', 'product_id', 'name', 'wish_lists.price', 'code', DB::raw("CONCAT('$this->adminUrl',image) AS image"))
+            ->get();
     }
 }

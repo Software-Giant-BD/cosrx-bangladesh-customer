@@ -1,32 +1,33 @@
 <?php
-header("Access-Control-Allow-Origin: *");
 
-    // Only process POST reqeusts.
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Get the form fields and remove whitespace.
-        $name = strip_tags(trim($_POST["con_name"]));
-        $name = str_replace(array("\r","\n"),array(" "," "),$name);
-        $email = filter_var(trim($_POST["con_email"]), FILTER_SANITIZE_EMAIL);
-        $phone = trim($_POST["con_phone"]);
-        $message = trim($_POST["con_message"]);
+header('Access-Control-Allow-Origin: *');
 
-        // Check that data was sent to the mailer.
-        if ( empty($name) OR empty($message) OR !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            // Set a 400 (bad request) response code and exit.
-            http_response_code(400);
-            echo "Please complete the form and try again.";
-            exit;
-        }
+// Only process POST reqeusts.
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Get the form fields and remove whitespace.
+    $name = strip_tags(trim($_POST['con_name']));
+    $name = str_replace(["\r", "\n"], [' ', ' '], $name);
+    $email = filter_var(trim($_POST['con_email']), FILTER_SANITIZE_EMAIL);
+    $phone = trim($_POST['con_phone']);
+    $message = trim($_POST['con_message']);
 
-        // Set the recipient email address.
-        $recipient = "your@email.here";
+    // Check that data was sent to the mailer.
+    if (empty($name) or empty($message) or ! filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        // Set a 400 (bad request) response code and exit.
+        http_response_code(400);
+        echo 'Please complete the form and try again.';
+        exit;
+    }
 
-        // Set the email subject.
-        $subject = "Brancy - Test Mail From $name";
+    // Set the recipient email address.
+    $recipient = 'your@email.here';
 
-        // Build the email content.
-        $email_content = 
-        '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    // Set the email subject.
+    $subject = "Brancy - Test Mail From $name";
+
+    // Build the email content.
+    $email_content =
+    '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
         <html lang="zxx">
             <head>
                 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -194,7 +195,7 @@ header("Access-Control-Allow-Origin: *");
                                                     <td width="100%" class="mobile" align="left" valign="middle">
                                                         <h3>Name:</h3>
                                                         <hr>
-                                                        <h2>' . $name .'</h2>
+                                                        <h2>'.$name.'</h2>
                                                     </td>
                                                 </tr>
                                                 <!--== End Name Field Item ==-->
@@ -210,7 +211,7 @@ header("Access-Control-Allow-Origin: *");
                                                     <td width="100%" class="mobile" align="left" valign="middle">
                                                         <h3>Email:</h3>
                                                         <hr>
-                                                        <h2 class="email-txt">'. $email .'</h2>
+                                                        <h2 class="email-txt">'.$email.'</h2>
                                                     </td>
                                                 </tr>
                                                 <!--== Start Email Field Item ==-->
@@ -226,7 +227,7 @@ header("Access-Control-Allow-Origin: *");
                                                     <td width="100%" class="mobile" align="left" valign="middle">
                                                         <h3>Phone or Mobile:</h3>
                                                         <hr>
-                                                        <h2>'. $phone .'</h2>
+                                                        <h2>'.$phone.'</h2>
                                                     </td>
                                                 </tr>
                                                 <!--== End Phone Field Item ==-->
@@ -242,7 +243,7 @@ header("Access-Control-Allow-Origin: *");
                                                     <td width="100%" class="mobile" align="left" valign="middle">
                                                         <h3>Subject:</h3>
                                                         <hr>
-                                                        <h2>'. $subject .'</h2>
+                                                        <h2>'.$subject.'</h2>
                                                     </td>
                                                 </tr>
                                                 <!--== End Subject Field Item ==-->
@@ -258,7 +259,7 @@ header("Access-Control-Allow-Origin: *");
                                                     <td width="100%" class="mobile" align="left" valign="middle">
                                                         <h3>Message:</h3>
                                                         <hr>
-                                                        <p class="message-content">'. $message .'</p>
+                                                        <p class="message-content">'.$message.'</p>
                                                     </td>
                                                 </tr>
                                                 <!--== End Message Field Item ==-->
@@ -293,27 +294,25 @@ header("Access-Control-Allow-Origin: *");
             </body>     
         </html>';
 
-        // Build the email headers.
-        $email_headers = "MIME-Version: 1.0" . "\r\n";
-        $email_headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-        $email_headers .= 'From:' . $name . ' ' . 'noreply@yourdomain.com' . "\r\n";
-        $email_headers .= 'Reply-To:' . $email . "\r\n";
+    // Build the email headers.
+    $email_headers = 'MIME-Version: 1.0'."\r\n";
+    $email_headers .= 'Content-type:text/html;charset=UTF-8'."\r\n";
+    $email_headers .= 'From:'.$name.' '.'noreply@yourdomain.com'."\r\n";
+    $email_headers .= 'Reply-To:'.$email."\r\n";
 
-        // Send the email.
-        if (mail($recipient, $subject, $email_content, $email_headers)) {
-            // Set a 200 (okay) response code.
-            http_response_code(200);
-            echo "Thank You! ".$name." , Your message has been sent.";
-        } else {
-            // Set a 500 (internal server error) response code.
-            http_response_code(500);
-            echo "Oops! Something went wrong and we couldn't send your message.";
-        }
-
+    // Send the email.
+    if (mail($recipient, $subject, $email_content, $email_headers)) {
+        // Set a 200 (okay) response code.
+        http_response_code(200);
+        echo 'Thank You! '.$name.' , Your message has been sent.';
     } else {
-        // Not a POST request, set a 403 (forbidden) response code.
-        http_response_code(403);
-        echo "There was a problem with your submission, please try again.";
+        // Set a 500 (internal server error) response code.
+        http_response_code(500);
+        echo "Oops! Something went wrong and we couldn't send your message.";
     }
 
-?>
+} else {
+    // Not a POST request, set a 403 (forbidden) response code.
+    http_response_code(403);
+    echo 'There was a problem with your submission, please try again.';
+}

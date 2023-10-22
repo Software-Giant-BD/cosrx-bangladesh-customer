@@ -45,11 +45,11 @@ class BrandRepository extends Repository implements IBrandRepository
             DB::raw("CONCAT('$this->adminUrl',brands.image) AS image"),
             DB::raw('sum(qty) as total_qty')
         )
-        ->join('products', 'orders.product_id', '=', 'products.id')
-        ->join('brands', 'products.brand_id', '=', 'brands.id')
-        ->groupBy('brands.name')
-        ->orderBy('total_qty', 'desc')
-        ->limit($take)
-        ->get();
+            ->join('products', 'orders.product_id', '=', 'products.id')
+            ->join('brands', 'products.brand_id', '=', 'brands.id')
+            ->groupBy('brands.name')
+            ->orderBy('total_qty', 'desc')
+            ->limit($take)
+            ->get();
     }
 }

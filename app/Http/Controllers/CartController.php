@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Helpers\ProductHelper;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use App\Repositories\Interface\ICartRepository;
 use App\Repositories\Interface\ICouponRepository;
-use App\Repositories\Interface\IProductRepository;
 use App\Repositories\Interface\IOfferProductRepository;
+use App\Repositories\Interface\IProductRepository;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class CartController extends Controller
 {
@@ -60,7 +60,7 @@ class CartController extends Controller
             $coupon['coupon_discount'] = $couponInfo->discount_amt;
             session()->put('coupon', $coupon);
             $response = ['result' => 'success', 'mgs' => 'Coupon will use for this order!', 'data' => $coupon];
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $response = ['result' => 'warning', 'mgs' => $e->getMessage(), 'data' => null];
         }
 
@@ -142,11 +142,12 @@ class CartController extends Controller
                 $this->setCartSession($new_item);
             }
             DB::commit();
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             Log::alert($e->getMessage());
             DB::rollback();
             $result['type'] = 'warning';
             $result['mgs'] = $e->getMessage();
+
             // echo json_encode($result,500);
             return response()->json($result, 500);
             exit;
@@ -166,4 +167,3 @@ class CartController extends Controller
         }
     }
 }
-

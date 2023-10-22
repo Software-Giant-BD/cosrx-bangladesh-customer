@@ -1,8 +1,8 @@
 <?php
 
+use App\Repositories\RepositoryServiceProvider;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
-use App\Repositories\RepositoryServiceProvider;
 
 return [
 

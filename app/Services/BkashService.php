@@ -2,16 +2,16 @@
 
 namespace App\Services;
 
-use URL;
-use App\Models\Invoice;
 use App\Helpers\GuidHelper;
-use Illuminate\Http\Request;
+use App\Models\Invoice;
 use App\Models\PaymentTransection;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
+use URL;
 
 class BkashService
 {
     private $base_url;
+
     private $payment_id;
 
     public function __construct()
@@ -19,41 +19,45 @@ class BkashService
         $this->base_url = env('BKASH_BASE_URL');
     }
 
-    public function authHeaders(){
-        return array(
+    public function authHeaders()
+    {
+        return [
             'Content-Type:application/json',
-            'Authorization:' .$this->grant(),
-            'X-APP-Key:'.env('BKASH_APP_KEY')
-        );
+            'Authorization:'.$this->grant(),
+            'X-APP-Key:'.env('BKASH_APP_KEY'),
+        ];
     }
-         
-    public function curlWithBody($url,$header,$method,$body_data_json){
+
+    public function curlWithBody($url, $header, $method, $body_data_json)
+    {
         $curl = curl_init($this->base_url.$url);
-        curl_setopt($curl,CURLOPT_HTTPHEADER, $header);
-        curl_setopt($curl,CURLOPT_CUSTOMREQUEST, $method);
-        curl_setopt($curl,CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl,CURLOPT_POSTFIELDS, $body_data_json);
-        curl_setopt($curl,CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $body_data_json);
+        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
         curl_setopt($curl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
         $response = curl_exec($curl);
         curl_close($curl);
+
         return $response;
     }
 
     public function grant()
     {
-        $header = array(
-                'Content-Type:application/json',
-                'username:'.env('BKASH_USER_NAME'),
-                'password:'.env('BKASH_PASSWORD')
-                );
-        $header_data_json=json_encode($header);
+        $header = [
+            'Content-Type:application/json',
+            'username:'.env('BKASH_USER_NAME'),
+            'password:'.env('BKASH_PASSWORD'),
+        ];
+        $header_data_json = json_encode($header);
 
-        $body_data = array('app_key'=> env('BKASH_APP_KEY'), 'app_secret'=>env('BKASH_APP_SECRET'));
-        $body_data_json=json_encode($body_data);
-    
-        $response = $this->curlWithBody('/tokenized/checkout/token/grant',$header,'POST',$body_data_json);
+        $body_data = ['app_key' => env('BKASH_APP_KEY'), 'app_secret' => env('BKASH_APP_SECRET')];
+        $body_data_json = json_encode($body_data);
+
+        $response = $this->curlWithBody('/tokenized/checkout/token/grant', $header, 'POST', $body_data_json);
         $token = json_decode($response)->id_token;
+
         return $token;
     }
 
@@ -132,23 +136,23 @@ class BkashService
         return $response;
     }
 
-    private function updatePayment($invoice,$status,$payment_json=[] )
+    private function updatePayment($invoice, $status, $payment_json = [])
     {
         $payment = PaymentTransection::where('invoice', $invoice)->first();
         $orderData = Invoice::where('invoice', $invoice)->where('payment_method', 'Bkash')->where('payment_status', 'Pending')->first();
-        
+
         if (! $payment) {
             return redirect(route('customer.order.complete', ['text' => 'Payment not found! Contact with administrator']));
         } elseif (! $orderData) {
             return redirect(route('customer.order.complete', ['text' => 'Order not found! Contact with administrator']));
         } else {
             $payment_info = [
-                'transaction_id' => isset($payment_json['trxID'])? $payment_json['trxID']:null,
+                'transaction_id' => isset($payment_json['trxID']) ? $payment_json['trxID'] : null,
                 'status' => $status,
                 'payment_json' => json_encode($payment_json),
             ];
             $invoiceInfo = [
-                'doc_no' => isset($payment_json['trxID'])? $payment_json['trxID']:null,
+                'doc_no' => isset($payment_json['trxID']) ? $payment_json['trxID'] : null,
                 'payment_status' => $status,
             ];
             $payment->update($payment_info);
@@ -156,28 +160,30 @@ class BkashService
         }
 
         $text = "Payment {$status} for {$invoice}";
+
         return redirect(route('customer.order.complete', ['text' => $text]));
     }
 
     public function callback($request)
     {
         $allRequest = $request->all();
-        $this->payment_id= $allRequest['paymentID'];
+        $this->payment_id = $allRequest['paymentID'];
         $invoice = $_GET['invoice'];
         if (isset($allRequest['status']) && $allRequest['status'] == 'failure') {
-            return $this->updatePayment($invoice,'Fail');
+            return $this->updatePayment($invoice, 'Fail');
         } elseif (isset($allRequest['status']) && $allRequest['status'] == 'cancel') {
             return $this->updatePayment($invoice, 'Cancel');
         } else {
             $response = $this->executePayment($this->payment_id);
-            $res_array = json_decode($response,true);
+            $res_array = json_decode($response, true);
             if (array_key_exists('statusCode', $res_array) && $res_array['statusCode'] != '0000') {
-                return $this->updatePayment($invoice,'Fail',$res_array);
+                return $this->updatePayment($invoice, 'Fail', $res_array);
             }
             if (array_key_exists('message', $res_array)) {
-                return $this->updatePayment($invoice,'Success',$res_array);
+                return $this->updatePayment($invoice, 'Success', $res_array);
             }
-            return $this->updatePayment($invoice,'Success',$res_array);
+
+            return $this->updatePayment($invoice, 'Success', $res_array);
         }
     }
 

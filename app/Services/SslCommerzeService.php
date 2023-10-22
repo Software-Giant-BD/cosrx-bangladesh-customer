@@ -157,7 +157,7 @@ class SslCommerzeService
     {
         //Received all the payement information from the gateway
         if ($data['tran_id']) { //Check transation id is posted or not.
-            
+
             $tran_id = $data['tran_id'];
 
             //Check order status in order tabel against the transaction id or order id.

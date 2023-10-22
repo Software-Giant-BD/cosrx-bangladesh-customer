@@ -16,6 +16,7 @@ class FacebookConversionService
 {
     //this service not used. used event/ job
     private $accessToken;
+
     private $pixelId;
 
     public function __construct()
@@ -24,15 +25,15 @@ class FacebookConversionService
         $this->pixelId = env('FACEBOOK_CAPI_PIXEL_ID');
     }
 
-    public function sendPurchaseEvent($postData=[])
+    public function sendPurchaseEvent($postData = [])
     {
 
         $api = Api::init(null, null, $this->accessToken);
         $api->setLogger(new CurlLogger());
 
         $user_data = (new UserData())
-            ->setEmails(array('joe@eg.com'))
-            ->setPhones(array('12345678901', '14251234567'))
+            ->setEmails(['joe@eg.com'])
+            ->setPhones(['12345678901', '14251234567'])
             ->setClientIpAddress($_SERVER['REMOTE_ADDR'])
             ->setClientUserAgent($_SERVER['HTTP_USER_AGENT'])
             ->setFbc('fb.1.1554763741205.AbCdEfGhIjKlMnOpQrStUvWxYz1234567890')
@@ -44,7 +45,7 @@ class FacebookConversionService
             ->setDeliveryCategory(DeliveryCategory::HOME_DELIVERY);
 
         $custom_data = (new CustomData())
-            ->setContents(array($content))
+            ->setContents([$content])
             ->setCurrency('bdt')
             ->setValue(123.45);
 
@@ -56,7 +57,7 @@ class FacebookConversionService
             ->setCustomData($custom_data)
             ->setActionSource(ActionSource::WEBSITE);
 
-        $events = array();
+        $events = [];
         array_push($events, $event);
 
         $request = (new EventRequest($this->pixelId))

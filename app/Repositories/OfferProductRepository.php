@@ -37,9 +37,9 @@ class OfferProductRepository extends Repository implements IOfferProductReposito
     public function offerPercentageOfProduct($product_id = null)
     {
         $query = DB::table('offer_products')
-        ->join('offers', 'offer_id', '=', 'offers.id')
-        ->select('discount_percentage')
-        ->orderBy('discount_percentage', 'desc');
+            ->join('offers', 'offer_id', '=', 'offers.id')
+            ->select('discount_percentage')
+            ->orderBy('discount_percentage', 'desc');
         if ($product_id) {
             $query = $query->where('product_id', '=', $product_id);
         }

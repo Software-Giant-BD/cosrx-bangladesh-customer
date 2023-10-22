@@ -22,7 +22,7 @@ class CouponRepository extends Repository implements ICouponRepository
     public function getByCode($code)
     {
         return $this->modelName::select('id', 'code', 'discount_amt', 'maximum_usages', 'used', 'start_date', 'end_date', 'status', 'short_description')
-        ->where('code', $code)->first();
+            ->where('code', $code)->first();
     }
 
     public function updateUsedQty($code)

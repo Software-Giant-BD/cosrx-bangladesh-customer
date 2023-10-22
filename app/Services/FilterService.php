@@ -18,7 +18,7 @@ class FilterService
     private $skinConcernRepo;
 
     public function __construct(ICategoryRepository $catRepo, IBrandRepository $brandRepo,
-    ISkinTypeRepository $skinTypeRepo, ISkinConcernRepository $skinConcernRepo)
+        ISkinTypeRepository $skinTypeRepo, ISkinConcernRepository $skinConcernRepo)
     {
         $this->catRepo = $catRepo;
         $this->brandRepo = $brandRepo;

@@ -54,9 +54,9 @@ class CartRepository extends Repository implements ICartRepository
     public function getUserCartForApi($customer_id)
     {
         return DB::table('carts')
-        ->join('products', 'products.id', '=', 'carts.product_id')
-        ->where('customer_id', $customer_id)
-        ->select('carts.id', 'customer_id', 'product_id', 'name', 'qty', 'carts.price', 'code', DB::raw("CONCAT('$this->adminUrl',image) AS image"))
-        ->get();
+            ->join('products', 'products.id', '=', 'carts.product_id')
+            ->where('customer_id', $customer_id)
+            ->select('carts.id', 'customer_id', 'product_id', 'name', 'qty', 'carts.price', 'code', DB::raw("CONCAT('$this->adminUrl',image) AS image"))
+            ->get();
     }
 }

@@ -69,7 +69,7 @@ class BlogRepository extends Repository implements IBlogRepository
         return Blog::whereHas('tag', function ($q) use ($tag) {
             $q->where('tag', '=', $tag);
         })
-        ->get();
+            ->get();
     }
 
     public function categoryWiseApi($category_id)
@@ -82,8 +82,8 @@ class BlogRepository extends Repository implements IBlogRepository
         return Blog::whereHas('tag', function ($q) use ($tag) {
             $q->where('tag', '=', $tag);
         })
-        ->select('id', 'title', 'image', 'created_at')
-        ->get();
+            ->select('id', 'title', 'image', 'created_at')
+            ->get();
     }
 
     public function searchApi($search)
@@ -93,12 +93,12 @@ class BlogRepository extends Repository implements IBlogRepository
         return Blog::WhereHas('category', function ($q) use ($searchLike) {
             $q->where('name', 'like', $searchLike);
         })
-        ->orWhereHas('tag', function ($q) use ($searchLike) {
-            $q->where('tag', 'like', $searchLike);
-        })
-        ->orWhere('title', 'like', $searchLike)->orWhere('description', 'like', $searchLike)
-        ->select('id', 'title', 'image', 'created_at')
-        ->get();
+            ->orWhereHas('tag', function ($q) use ($searchLike) {
+                $q->where('tag', 'like', $searchLike);
+            })
+            ->orWhere('title', 'like', $searchLike)->orWhere('description', 'like', $searchLike)
+            ->select('id', 'title', 'image', 'created_at')
+            ->get();
     }
 
     public function search($search)
@@ -108,10 +108,10 @@ class BlogRepository extends Repository implements IBlogRepository
         return Blog::WhereHas('category', function ($q) use ($searchLike) {
             $q->where('name', 'like', $searchLike);
         })
-        ->orWhereHas('tag', function ($q) use ($searchLike) {
-            $q->where('tag', 'like', $searchLike);
-        })
-        ->orWhere('title', 'like', $searchLike)->orWhere('description', 'like', $searchLike)->get();
+            ->orWhereHas('tag', function ($q) use ($searchLike) {
+                $q->where('tag', 'like', $searchLike);
+            })
+            ->orWhere('title', 'like', $searchLike)->orWhere('description', 'like', $searchLike)->get();
     }
 
     //tag

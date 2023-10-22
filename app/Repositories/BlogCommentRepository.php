@@ -17,7 +17,7 @@ class BlogCommentRepository extends Repository implements IBlogCommentRepository
     public function getCommentsByBlog($blog_id)
     {
         return $this->modelName::with('children')
-        ->select('id', 'blog_id', 'parent_id', 'author', 'email', 'comment_text', 'created_at')
-        ->where('blog_id', $blog_id)->whereNull('parent_id')->get();
+            ->select('id', 'blog_id', 'parent_id', 'author', 'email', 'comment_text', 'created_at')
+            ->where('blog_id', $blog_id)->whereNull('parent_id')->get();
     }
 }
