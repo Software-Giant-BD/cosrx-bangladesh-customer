@@ -1,14 +1,15 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\WishController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IngredientController;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SkinConcernController;
-use App\Http\Controllers\WishController;
-use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -56,4 +57,32 @@ Route::group(['prefix' => 'order', 'as' => 'order.'], function () {
 
     Route::get('tracking/{invoice?}', [OrderController::class, 'tracking'])->name('tracking');
     Route::get('tracking-request', [OrderController::class, 'trackingRequest'])->name('tracking.request');
+});
+
+
+//account and login
+Route::group(['middleware' => ['isLogin']], function () {
+    Route::get('logout', [AccountController::class, 'logout'])->name('logout');
+
+    Route::group(['prefix' => 'account', 'as' => 'account.'], function () {
+        Route::get('index', [AccountController::class, 'index'])->name('personal.info');
+        Route::post('update', [AccountController::class, 'update'])->name('update');
+        Route::get('my-orders', [OrderController::class, 'myOrders'])->name('my.orders');
+        Route::get('change-password-edit', [AccountController::class, 'changePasswordEdit'])->name('change.password.edit');
+        Route::post('change-password-update', [AccountController::class, 'changePasswordUpdate'])->name('change.password.Update');
+    });
+});
+
+Route::get('login-reg-create', [AccountController::class, 'loginRegCreate'])->name('login.reg.create');
+Route::post('login', [AccountController::class, 'login'])->name('login.store');
+
+Route::get('reg', [AccountController::class, 'registration'])->name('registration.store');
+Route::post('reg', [AccountController::class, 'registration'])->name('registration.store');
+
+
+Route::group(['prefix' => 'password-otp', 'as' => 'password.otp.'], function () {
+    Route::get('create', [AccountController::class, 'otpCreate'])->name('create');
+    Route::post('send', [AccountController::class, 'otpSend'])->name('send');
+    Route::get('submit-page', [AccountController::class, 'otpSubmitPage'])->name('submit.page');
+    Route::POST('update-password', [AccountController::class, 'forgetPasswordUpdate'])->name('update.password');
 });
