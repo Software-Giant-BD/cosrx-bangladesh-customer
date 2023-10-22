@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Helpers\ProductHelper;
+use Illuminate\Support\Facades\DB;
 use App\Repositories\Interface\ICartRepository;
 use App\Repositories\Interface\ICouponRepository;
 use App\Repositories\Interface\IProductRepository;
