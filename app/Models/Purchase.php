@@ -48,8 +48,8 @@ class Purchase extends Model
     public function scopeWithTotalPayAmount($query)
     {
         return $query->addSelect(['total_pay' => SupplierPayment::select(DB::raw('sum(amount)'))
-        ->whereColumn('payment_ref', 'purchases.po_no')
-        ->where('sign', '1')
-        ->limit(1), ]);
+            ->whereColumn('payment_ref', 'purchases.po_no')
+            ->where('sign', '1')
+            ->limit(1), ]);
     }
 }

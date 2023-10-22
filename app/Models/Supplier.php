@@ -43,7 +43,7 @@ class Supplier extends Model
     public function scopeWithSupplierAmount($query)
     {
         return $query->addSelect(['amount' => SupplierPayment::select(DB::raw('sum(amount*sign)'))
-        ->whereColumn('supplier_id', 'suppliers.id')
-        ->where('isCountAble', 1), ]);
+            ->whereColumn('supplier_id', 'suppliers.id')
+            ->where('isCountAble', 1), ]);
     }
 }
