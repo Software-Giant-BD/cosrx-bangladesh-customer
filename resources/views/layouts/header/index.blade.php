@@ -64,7 +64,7 @@
                                     </g>
                                 </svg>
                             </span>
-                            <span class="cart-value">0</span>
+                            <span class="cart-value" id="cart-value">43</span>
                         </button>
 
                     </div>

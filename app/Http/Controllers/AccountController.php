@@ -106,7 +106,7 @@ class AccountController extends Controller
     {
         try {
             if (strlen($request->password) < 6) {
-                throw new \Exception('Pasword minimum 6 character!');
+                throw new \Exception('Password minimum 6 character!');
             }
             if (empty($request->name) || empty($request->mobile)) {
                 throw new \Exception("Name or mobile can't be empty!");

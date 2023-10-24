@@ -1,5 +1,8 @@
 <script>
     function addToLi(newItem) {
+        let currentCartQty = parseInt ($("#cart-value").text(),10);
+        $("#cart-value").text(currentCartQty+1)
+
         var side_total_cart_item = parseInt($("#side_total_cart_item").text(), 10) + 1;
         $("#side_total_cart_item").text(side_total_cart_item)
 
@@ -21,6 +24,19 @@
 
     }
 
+    function toastMessage(type="success",mgs="Hello")
+    {
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: type,
+            title: mgs,
+            showConfirmButton: false,
+            background: '#EDF8FC',
+            timer: 2000
+        })
+    }
+
     function cart_update_request(qty,product_id)
     {
         $.ajax({
@@ -31,36 +47,18 @@
                 product_id: product_id
             },
             success: function(result) {
-                
                 result = JSON.parse(result);
                 console.log(result)
                 if (result.isExist == false) {
+                    
                     addToLi(result.new_item);
                 }
-                
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    icon: result.type,
-                    title: result.mgs,
-                    showConfirmButton: false,
-                    background: '#EDF8FC',
-                    timer: 2000
-                })
+                toastMessage( result.type,result.mgs)
                   
             },
           error: function(request, status, error) {
                 let resultResponse = JSON.parse (request.responseText);
-                console.log(resultResponse.type)
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    icon: "warning",
-                    title: resultResponse.mgs,
-                    showConfirmButton: false,
-                    background: '#EDF8FC',
-                    timer: 2000
-                })
+                toastMessage( "warning",resultResponse.mgs)
             }
         });
     }
