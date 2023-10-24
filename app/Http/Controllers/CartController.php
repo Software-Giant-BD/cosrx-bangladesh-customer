@@ -96,11 +96,11 @@ class CartController extends Controller
         $cart = session('cart');
         $cart[$data['product_id']] = $data;
         session()->put('cart', $cart);
-        Log::debug(session('cart'));
     }
 
     public function store(Request $request)
     {
+        session()->forget('cart');
         $result['type'] = 'success';
         $result['mgs'] = 'Product added to cart';
         $result['isExist'] = false;
