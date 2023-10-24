@@ -1,7 +1,16 @@
 @extends('layouts.index')
 @section('main')
     <main class="main-content">
-        
+        @php
+            $cart = session('cart');
+            $coupon = session('coupon');
+            $coupon_discount = 0;
+            if (isset($coupon['coupon_discount'])) {
+                $coupon_discount = $coupon['coupon_discount'];
+            }
+            $subTotal = 0;
+            $total = 0;
+        @endphp
         <!--== Start Page Header Area Wrapper ==-->
         <nav aria-label="breadcrumb" class="breadcrumb-style1">
             <div class="container">
@@ -18,16 +27,7 @@
                 <div class="row">
                     @include('checkout.billing-address')
                     <div class="col-lg-6">
-                        @php
-                            $cart = session('cart');
-                            $coupon = session('coupon');
-                            $coupon_discount = 0;
-                            if (isset($coupon['coupon_discount'])) {
-                                $coupon_discount = $coupon['coupon_discount'];
-                            }
-                            $subTotal = 0;
-                            $total = 0;
-                        @endphp
+                        
                         <div class="checkout-order-details-wrap">
                             <div class="order-details-table-wrap table-responsive">
                                 <h2 class="title mb-25">Your order</h2>
@@ -45,21 +45,33 @@
                                                 $total += $subTotal;
                                             @endphp
                                             <tr class="cart-item">
-                                                <td class="product-name"> {{ $item['product_name'] }} 
+                                                <td class="product-name"> {{ $item['product_name'] }}
                                                 </td>
-                                                <td class="product-total">{{ $item['qty'] }} X ৳{{ $item['product_price'] }}</td>
+                                                <td class="product-total">{{ $item['qty'] }} X
+                                                    ৳{{ $item['product_price'] }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                     <tfoot class="table-foot">
-                                        <input type="hidden" value="{{$total - $coupon_discount}}" id="totalNcoupon_discount">
+
+                                        <input type="hidden" value="{{ $total - $coupon_discount }}"
+                                            id="totalNcoupon_discount">
+                                        <input type="hidden" value="{{ $total }}" id="subTotal">
+
+                                        <input type="hidden" value="{{ env('delivery_charge_outside_dhaka') }}"
+                                            id="delivery_charge">
+
+                                        <input type="hidden" value="{{ $coupon_discount }}" id="coupon_amount">
+
                                         <tr class="cart-subtotal">
                                             <th>Subtotal</th>
                                             <td>৳{{ $total }}</td>
                                         </tr>
                                         <tr class="shipping">
                                             <th>Shipping</th>
-                                            <td><span id="show_delivery_charge">৳{{ env('delivery_charge_outside_dhaka') }}</span></td>
+                                            <td><span
+                                                    id="show_delivery_charge">৳{{ env('delivery_charge_outside_dhaka') }}</span>
+                                            </td>
                                         </tr>
                                         <tr class="shipping">
                                             <th>Coupon</th>
@@ -67,7 +79,9 @@
                                         </tr>
                                         <tr class="order-total">
                                             <th>Total </th>
-                                            <td><span id="total">৳{{ $total + env('delivery_charge_outside_dhaka') - $coupon_discount }}</span></td>
+                                            <td><span
+                                                    id="total">৳{{ $total + env('delivery_charge_outside_dhaka') - $coupon_discount }}</span>
+                                            </td>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -100,6 +114,15 @@
 @section('js')
     @include('mgs.sweet-alert')
     <script>
+        function calculate() {
+            let subTotal = parseFloat($("#subTotal").val());
+            let coupon_amount = parseFloat($("#coupon_amount").val());
+            let delivery_charge = parseFloat($("#delivery_charge").val());
+            console.log(coupon_amount);
+            let total = subTotal + delivery_charge - coupon_amount;
+            $("#total").html("৳" + total);
+        }
+
         $(document).ready(function() {
             let otp = null;
             $(".modal_close").click(function() {
@@ -156,41 +179,40 @@
                     delivery_charge = {{ env('delivery_charge_outside_dhaka') }}
                     $("#show_delivery_charge").html("৳" + delivery_charge);
                 }
-
-                let totalNcoupon_discount = parseFloat($("#totalNcoupon_discount").val());
-                let total = totalNcoupon_discount + delivery_charge;
-                $("#total").html("৳" + total);
+                $("#delivery_charge").val(delivery_charge)
+                calculate()
             });
+
+            //coupon request
+            $("#coupon_redeem").click(function() {
+                $("#show_coupon_amount").text(0)
+                let coupon_code = $("#coupon_code").val();
+                var url = '{{ route('coupon.redeem', ':coupon_code') }}';
+                url = url.replace(':coupon_code', coupon_code);
+                $.ajax({
+                    url: url,
+                    type: 'get',
+                    success: function(response) {
+                        if (response.result == "success") {
+                            if (response.data.coupon_discount) {
+                                $("#show_coupon_amount").text(response.data.coupon_discount)
+                                $("#coupon_amount").val(response.data.coupon_discount)
+                            } else {
+                                $("#coupon_amount").val(0)
+                                $("#show_coupon_amount").text(0)
+                            }
+                        } else {
+                            $("#coupon_amount").val(0)
+                            $("#show_coupon_amount").text(0)
+                        }
+                        toastMessage(response.result, response.mgs)
+                        calculate();
+                    },
+                    error: function(xhr, status, error) {
+                        calculate();
+                    }
+                });
+            })
         })
     </script>
-
-<script>
-    $(document).ready(function() {
-        $("#coupon_redeem").click(function() {
-            $("#show_coupon_amount").text(0)
-            let coupon_code = $("#coupon_code").val();
-            var url = '{{ route('coupon.redeem', ':coupon_code') }}';
-            url = url.replace(':coupon_code', coupon_code);
-            $.ajax({
-                url: url,
-                type: 'get',
-                success: function(response) {
-                    console.log(response)
-
-                    if (response.result == "success") {
-                        if (response.data.coupon_discount)
-                            $("#show_coupon_amount").text(response.data.coupon_discount)
-                        else
-                            $("#show_coupon_amount").text(0)
-                    }
-                    toastMessage(response.result,response.mgs)
-                    calculate();
-                },
-                error: function(xhr, status, error) {
-                    calculate();
-                }
-            });
-        })
-    })
-</script>
 @endsection
