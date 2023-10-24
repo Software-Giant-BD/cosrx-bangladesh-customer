@@ -72,6 +72,9 @@
         .cart_add_btn {
             cursor: pointer;
         }
+        abbr.required{
+            color:red;
+        }
     </style>
 
     <!-- Font CSS -->

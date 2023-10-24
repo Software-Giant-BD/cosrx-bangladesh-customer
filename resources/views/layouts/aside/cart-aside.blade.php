@@ -21,7 +21,7 @@
                 @endforeach
             @endif
         </ul>
-        <a class="btn-total" href="product-cart.html">View cart</a>
-        <a class="btn-total" href="product-checkout.html">Checkout</a>
+        <a class="btn-total" href="{{ route('cart.index') }}">View cart</a>
+        <a class="btn-total" href="{{ route('checkout.index') }}">Checkout</a>
     </div>
 </aside>
