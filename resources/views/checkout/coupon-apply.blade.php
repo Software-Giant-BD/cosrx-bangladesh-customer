@@ -12,16 +12,17 @@
                 <div class="card-body">
                     <div class="apply-coupon-wrap">
                         <p>If you have a coupon code, please apply it below.</p>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input id="coupon_code" name="coupon_code" value="{{$coupon['coupon_code']}}" class="form-control" type="text" placeholder="Coupon code">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <button id="coupon_redeem" type="button" class="btn-coupon">Apply coupon</button>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input id="coupon_code" name="coupon_code" value="{{ $coupon['coupon_code'] }}"
+                                        class="form-control" type="text" placeholder="Coupon code">
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <button id="coupon_redeem" type="button" class="btn-coupon">Apply coupon</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
