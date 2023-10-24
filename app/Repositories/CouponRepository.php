@@ -2,6 +2,9 @@
 
 namespace App\Repositories;
 
+use App\Models\Product;
+use App\Models\Coupon;
+
 use App\Repositories\Interface\ICouponRepository;
 
 class CouponRepository extends Repository implements ICouponRepository
