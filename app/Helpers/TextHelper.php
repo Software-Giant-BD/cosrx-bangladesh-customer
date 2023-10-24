@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Helpers;
-
-class TextHelper 
-{
-    public static function limitWords($text, $limit = 5) {
+if (!function_exists('limitWords')) {
+    function limitWords($text, $limit = 5)
+    {
         $words = preg_split('/\s+/', $text);
+        $ellipsis = "...";
         if (count($words) <= $limit) {
             return $text;
         } else {
-            return implode(' ', array_slice($words, 0, $limit));
+            $limitedWords = implode(' ', array_slice($words, 0, $limit));
+            return $limitedWords . $ellipsis;
         }
     }
 }
