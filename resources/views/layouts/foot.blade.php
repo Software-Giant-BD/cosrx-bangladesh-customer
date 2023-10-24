@@ -22,6 +22,27 @@
 </script>
 
 <script>
+    function limitWords(inputString, maxWords) {
+        const words = inputString.split(' ');
+        if (words.length <= maxWords) {
+            return inputString;
+        } else {
+            return words.slice(0, maxWords).join(' ') + '...';
+        }
+    }
+
+    function toastMessage(type = "success", mgs = "Hello") {
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: type,
+            title: mgs,
+            showConfirmButton: false,
+            background: '#EDF8FC',
+            timer: 2000
+        })
+    }
+
     $(document).ready(function() {
         $(document).on("click", ".cart_delete", function() {
             var product_id = $(this).data("cart_product_id");
@@ -38,7 +59,6 @@
                     product_id: product_id
                 },
                 success: function(result) {
-                    console.log(result)
                     $(list_id).remove();
                     $("#cart_total").text(new_cart_total);
                     var side_total_cart_item = parseInt($("#side_total_cart_item").text(),
