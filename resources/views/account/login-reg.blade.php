@@ -22,24 +22,20 @@
                     <div class="my-account-item-wrap">
                         <h3 class="title">Login</h3>
                         <div class="my-account-form">
-                            <form action="#" method="post">
+                            <form action="{{ route('login.store') }}" method="post">
+                                @csrf
                                 <div class="form-group mb-6">
-                                    <label for="login_username">Username or Email Address <sup>*</sup></label>
-                                    <input type="email" id="login_username">
+                                    <label>Mobile <sup>*</sup></label>
+                                    <input type="number" id="mobile" name="mobile">
                                 </div>
 
                                 <div class="form-group mb-6">
                                     <label for="login_pwsd">Password <sup>*</sup></label>
-                                    <input type="password" id="login_pwsd">
+                                    <input type="password" id="password" name="password">
                                 </div>
 
                                 <div class="form-group d-flex align-items-center mb-14">
-                                    <a class="btn" href="my-account.html">Login</a>
-
-                                    <div class="form-check ms-3">
-                                        <input type="checkbox" class="form-check-input" id="remember_pwsd">
-                                        <label class="form-check-label" for="remember_pwsd">Remember Me</label>
-                                    </div>
+                                    <button class="btn" type="submit">Login</button>
                                 </div>
                                 <a class="lost-password" href="my-account.html">Lost your Password?</a>
                             </form>

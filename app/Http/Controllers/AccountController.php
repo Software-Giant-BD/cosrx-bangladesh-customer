@@ -112,6 +112,9 @@ class AccountController extends Controller
                 throw new \Exception("Name or mobile can't be empty!");
             }
 
+            if(strlen($request->password) != 11)
+                throw new \Exception("Mobile should be 11 digit");
+            
             if ($this->mainRepo->customerByMobile($request->mobile)) {
                 throw new \Exception('Customer Exist with this number!');
             }
