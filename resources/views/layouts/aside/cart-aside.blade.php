@@ -1,3 +1,4 @@
+@inject('TextHelper', 'App\Helpers\TextHelper')
 <aside class="aside-cart-wrapper offcanvas offcanvas-end" tabindex="-1" id="AsideOffcanvasCart" aria-labelledby="offcanvasRightLabel">
     <div class="offcanvas-header">
         <h1 class="d-none" id="offcanvasRightLabel">Shopping Cart</h1>
@@ -13,7 +14,7 @@
                     <a href="#/" class="remove cart_delete" data-cart_product_id="{{$key}}" data-cart_price="{{$item['product_price']}}" data-cart_qty="{{$item['qty']}}">×</a>
                     <a href="product-details.html">
                         <img src="{{env('Admin_url').$item['product_image']}}" width="68" height="84" alt="Image">
-                        <span class="product-title">{{ $item['product_name'] }}</span>
+                        <span class="product-title">{{ TextHelper::limitWords($item['product_name'],2) }}</span>
                     </a>
                     <span class="product-price">{{  $item['qty']}} × {{ $item['product_price']}}</span>
                 </li>
