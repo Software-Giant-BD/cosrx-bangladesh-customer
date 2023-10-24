@@ -5,22 +5,19 @@
     </div>
     <div class="offcanvas-body">
         <ul class="aside-cart-product-list" id="side_cart_ul">
-            <li class="aside-product-list-item">
-                <a href="#/" class="remove">×</a>
-                <a href="product-details.html">
-                    <img src="{{asset('assets/images/shop/cart1.webp')}}" width="68" height="84" alt="Image">
-                    <span class="product-title">Leather Mens Slipper</span>
-                </a>
-                <span class="product-price">1 × £69.99</span>
-            </li>
-            <li class="aside-product-list-item">
-                <a href="#/" class="remove">×</a>
-                <a href="product-details.html">
-                    <img src="{{asset('assets/images/shop/cart2.webp')}}" width="68" height="84" alt="Image">
-                    <span class="product-title">Quickiin Mens shoes</span>
-                </a>
-                <span class="product-price">1 × £20.00</span>
-            </li>
+            @php
+                $cart = session('cart');
+            @endphp
+            @foreach ($cart as $key=>$item)
+                <li class="aside-product-list-item" id="{{$key."_li"}}">
+                    <a href="#/" class="remove cart_delete" data-cart_product_id="{{$key}}" data-cart_price="{{$item['product_price']}}" data-cart_qty="{{$item['qty']}}">×</a>
+                    <a href="product-details.html">
+                        <img src="{{env('Admin_url').$item['product_image']}}" width="68" height="84" alt="Image">
+                        <span class="product-title">{{ $item['product_name'] }}</span>
+                    </a>
+                    <span class="product-price">{{  $item['qty']}} × {{ $item['product_price']}}</span>
+                </li>
+            @endforeach
         </ul>
         <a class="btn-total" href="product-cart.html">View cart</a>
         <a class="btn-total" href="product-checkout.html">Checkout</a>

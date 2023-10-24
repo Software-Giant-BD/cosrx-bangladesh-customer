@@ -6,32 +6,19 @@
         var Admin_url = $("#Admin_url").val();
         var imagePath = Admin_url + newItem.product_image;
 
-        // Create a new <li> element with variables
-        var newCartItem = $("<li class='aside-product-list-item' id='" + newItem.product_id + "_li'> \
-                       <a href='#' class='remove cart_delete' data-cart_product_id='" + newItem.product_id + "' data-cart_price='" + newItem.product_price + "' data-cart_qty='" + newItem.qty + "'>×</a>\
-                        <a href='product-details.html'> \
-                            <img src='" + imagePath + "' width='68' height='84' alt='Image'> \
-                            <span class='product-title'>" + limitWords(newItem.product_name, 3) + "</span> \
-                        </a> \
-                        <span class='product-price'>"+newItem.qty+" × " + newItem.product_price + "</span> \
-                    </li>");
+        // new list item
+        var liStart = "<li class='aside-product-list-item' id='" + newItem.product_id + "_li'>";
+        var removeLink = "<a href='#' class='remove cart_delete' data-cart_product_id='" + newItem.product_id + "' data-cart_price='" + newItem.product_price + "' data-cart_qty='" + newItem.qty + "'>×</a>";
+        var productDetailsLink = "<a href='#'>";
+        var image = "<img src='" + imagePath + "' width='68' height='84' alt='Image'>";
+        var productTitle = "<span class='product-title'>" + limitWords(newItem.product_name, 3) + "</span></a>";
+        var productPrice = "<span class='product-price'>" + newItem.qty + " × " + newItem.product_price + "</span>";
+        var liEnd = "</li>";
+
+        var newCartItem = liStart + removeLink + productDetailsLink + image + productTitle + productPrice + liEnd;
 
         $("#side_cart_ul").append(newCartItem);
-
-
-        // var li_s = "<li id='" + newItem.product_id + "_li' class='cart_list'>";
-        // var a_s = "<a><figure>";
-        // var img_s = " <img src='" + product_image + "' data-src='" + product_image +
-        //     "' width='50' height='50' class='lazy'></figure>";
-        // var div_s = "<div><span>" + newItem.product_name + "</span>"
-        // var p_s = "<p>৳<span>" + newItem.product_price + "</span> x <span>" + newItem.qty + "</span></p></div></a>";
-        // var a2_s = "<a  href='#' class='action cart_delete' data-cart_product_id='" + newItem.product_id +
-        //     "' data-cart_price='" + newItem.product_price + "' data-cart_qty='" + newItem.qty +
-        //     "'><i class='ti-trash'></i></a>";
-
-        // var li = li_s + a_s + img_s + div_s + p_s + a2_s;
-        // $("#side_cart_ul").append(li);
-
+       
     }
 
     function cart_update_request(qty, product_id) {

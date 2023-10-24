@@ -10,5 +10,11 @@
             </g>
         </svg>
     </span>
-    <span class="cart-value" id="side_total_cart_item">0</span>
+    @php
+        $cart = session('cart');
+        $total_cart = 0;
+        if($cart)
+            $total_cart = count($cart);
+    @endphp
+    <span class="cart-value" id="side_total_cart_item">{{ $total_cart }}</span>
 </button>
