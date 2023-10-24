@@ -74,12 +74,10 @@ Route::group(['middleware' => ['isLogin']], function () {
     });
 });
 
+//login registration
 Route::get('login-reg-create', [AccountController::class, 'loginRegCreate'])->name('login.reg.create');
 Route::post('login', [AccountController::class, 'login'])->name('login.store');
-
-Route::get('reg', [AccountController::class, 'registration'])->name('registration.store');
 Route::post('reg', [AccountController::class, 'registration'])->name('registration.store');
-
 
 Route::group(['prefix' => 'password-otp', 'as' => 'password.otp.'], function () {
     Route::get('create', [AccountController::class, 'otpCreate'])->name('create');
@@ -90,13 +88,10 @@ Route::group(['prefix' => 'password-otp', 'as' => 'password.otp.'], function () 
 
 
  // product details by slug
-
  Route::group(['prefix' => 'products', 'as' => 'product.'], function () {
-     Route::get('list', [ProductController::class, 'index'])->name('index');
-     Route::get('/{slug}', [ProductController::class, 'detailsBySlug'])->name('details');
-     Route::get('search', [ProductController::class, 'search'])->name('search');
-     Route::get('filter', [ProductController::class, 'filter'])->name('filter');
-
-     Route::get('load-product/{dataCount}', [ProductController::class, 'loadIndexProduct'])->name('index.load');
-   
+    Route::get('list', [ProductController::class, 'index'])->name('index');
+    Route::get('/{slug}', [ProductController::class, 'detailsBySlug'])->name('details');
+    Route::get('search', [ProductController::class, 'search'])->name('search');
+    Route::get('filter', [ProductController::class, 'filter'])->name('filter');
+    Route::get('load-product/{dataCount}', [ProductController::class, 'loadIndexProduct'])->name('index.load');
  });
