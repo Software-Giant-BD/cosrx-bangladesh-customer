@@ -26,7 +26,7 @@
                         @else
                             <a class="header-action-btn" href="{{ route('login.reg.create') }}">
                                 <span class="icon">
-                                    Sign In or Sign Up
+                                    Signin
                                 </span>
                             </a>
                         @endif
