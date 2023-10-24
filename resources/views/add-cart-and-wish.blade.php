@@ -1,13 +1,13 @@
 <script>
     function addToLi(newItem) {
-        let currentCartQty = parseInt($("#cart-value").text(), 10) + 1;
-        $("#cart-value").text(currentCartQty)
+        let currentCartQty = parseInt($("#side_total_cart_item").text(), 10) + 1;
+        $("#side_total_cart_item").text(currentCartQty)
 
         var Admin_url = $("#Admin_url").val();
         var imagePath = Admin_url + newItem.product_image;
 
         // Create a new <li> element with variables
-        var newCartItem = $("<li class='aside-product-list-item'> \
+        var newCartItem = $("<li class='aside-product-list-item' id='" + newItem.product_id + "_li'> \
                        <a href='#' class='remove cart_delete' data-cart_product_id='" + newItem.product_id + "' data-cart_price='" + newItem.product_price + "' data-cart_qty='" + newItem.qty + "'>×</a>\
                         <a href='product-details.html'> \
                             <img src='" + imagePath + "' width='68' height='84' alt='Image'> \
@@ -44,13 +44,10 @@
             },
             success: function(result) {
                 result = JSON.parse(result);
-                console.log(result)
                 if (result.isExist == false) {
-
                     addToLi(result.new_item);
                 }
                 toastMessage(result.type, result.mgs)
-
             },
             error: function(request, status, error) {
                 let resultResponse = JSON.parse(request.responseText);
@@ -75,7 +72,6 @@
 
         $(document).on("click", ".wish_add_btn", function() {
             var product_id = $(this).data("product_id");
-            console.log(product_id)
             $.ajax({
                 type: 'POST',
                 url: "{{ route('wish.store') }}",

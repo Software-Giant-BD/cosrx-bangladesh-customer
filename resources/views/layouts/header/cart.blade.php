@@ -10,5 +10,5 @@
             </g>
         </svg>
     </span>
-    <span class="cart-value" id="cart-value">0</span>
+    <span class="cart-value" id="side_total_cart_item">0</span>
 </button>

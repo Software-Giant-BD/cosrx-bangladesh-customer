@@ -100,7 +100,6 @@ class CartController extends Controller
 
     public function store(Request $request)
     {
-        session()->forget('cart');
         $result['type'] = 'success';
         $result['mgs'] = 'Product added to cart';
         $result['isExist'] = false;

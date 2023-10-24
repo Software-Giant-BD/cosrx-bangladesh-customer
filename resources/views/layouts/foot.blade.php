@@ -59,7 +59,6 @@
                     product_id: product_id
                 },
                 success: function(result) {
-                    console.log(result)
                     $(list_id).remove();
                     $("#cart_total").text(new_cart_total);
                     var side_total_cart_item = parseInt($("#side_total_cart_item").text(),
