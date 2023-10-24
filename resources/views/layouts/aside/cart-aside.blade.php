@@ -12,7 +12,7 @@
                 @foreach ($cart as $key=>$item)
                     <li class="aside-product-list-item" id="{{$key."_li"}}">
                         <a href="#/" class="remove cart_delete" data-cart_product_id="{{$key}}" data-cart_price="{{$item['product_price']}}" data-cart_qty="{{$item['qty']}}">×</a>
-                        <a href="product-details.html">
+                        <a href="{{ route('product.details',['slug'=>$item['product_slug']]) }}">
                             <img src="{{env('Admin_url').$item['product_image']}}" width="68" height="84" alt="Image">
                             <span class="product-title">{{ limitWords($item['product_name'],2) }}</span>
                         </a>
