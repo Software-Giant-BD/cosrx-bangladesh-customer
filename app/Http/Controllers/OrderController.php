@@ -189,7 +189,7 @@ class OrderController extends Controller
             return back()->with('warning', $e->getMessage())->withInput();
         }
 
-        return redirect(route('customer.order.complete', ['text' => 'Order completed ('.$data['invoice'].')']));
+        return redirect(route('order.complete', ['text' => 'Order completed ('.$data['invoice'].')']));
     }
 
     public function orderSms($invoice, $mobile)
@@ -215,7 +215,7 @@ class OrderController extends Controller
             $this->orderSms($result->invoice, $result->mobile);
         }
 
-        return redirect(route('customer.order.complete', ['text' => $text]));
+        return redirect(route('order.complete', ['text' => $text]));
     }
 
     public function paymentCancel(Request $request)
@@ -224,7 +224,7 @@ class OrderController extends Controller
         $return = $this->sslService->cancel($data);
         $text = 'Payment was cancel';
 
-        return redirect(route('customer.order.complete', ['text' => $text]));
+        return redirect(route('order.complete', ['text' => $text]));
     }
 
     public function paymentFail(Request $request)
@@ -233,7 +233,7 @@ class OrderController extends Controller
         $return = $this->sslService->fail($data);
         $text = $return;
 
-        return redirect(route('customer.order.complete', ['text' => $text]));
+        return redirect(route('order.complete', ['text' => $text]));
     }
 
     public function paymentIpn(Request $request)
@@ -241,12 +241,13 @@ class OrderController extends Controller
         $data = $request->input();
         $return = $this->sslService->ipn($data);
 
-        return redirect(route('customer.order.complete', ['text' => $return]));
+        return redirect(route('order.complete', ['text' => $return]));
     }
 
     public function complete($text = null)
     {
-        return view('customer.order.complete', compact('text'));
+        return $text;
+        return view('order.complete', compact('text'));
     }
 
     public function invoice($invoice)
@@ -254,10 +255,10 @@ class OrderController extends Controller
         $data = $this->orderRepo->orderDetails($invoice);
         $invoice = $this->mainRepo->invoiceWiseInfo($invoice);
         if (! $invoice) {
-            return redirect(route('customer.account.my.orders'))->with('warning', 'Order not found!');
+            return redirect(route('account.my.orders'))->with('warning', 'Order not found!');
         }
 
-        return view('customer.order.invoice', compact('data', 'invoice'));
+        return view('order.invoice', compact('data', 'invoice'));
     }
 
     public function printInvoice($invoice)
@@ -265,10 +266,10 @@ class OrderController extends Controller
         $data = $this->orderRepo->orderDetails($invoice);
         $invoice = $this->mainRepo->invoiceWiseInfo($invoice);
         if (! $invoice) {
-            return redirect(route('customer.account.my.orders'))->with('warning', 'Order not found!');
+            return redirect(route('account.my.orders'))->with('warning', 'Order not found!');
         }
 
-        return view('customer.order.print-invoice', compact('data', 'invoice'));
+        return view('order.print-invoice', compact('data', 'invoice'));
     }
 
     public function myOrders()
@@ -276,7 +277,7 @@ class OrderController extends Controller
         $data = $this->mainRepo->myOrders(session('id'));
         $active = 'order';
 
-        return view('customer.account.profile.my-orders', compact('data', 'active'));
+        return view('account.profile.my-orders', compact('data', 'active'));
     }
 
     public function trackingRequest(Request $request)
@@ -291,7 +292,7 @@ class OrderController extends Controller
             return back()->with('warning', 'Order not found!');
         }
 
-        return view('customer.order.tracking', compact('invoice', 'data'));
+        return view('order.tracking', compact('invoice', 'data'));
     }
 
     public function tracking($invoice = null)
@@ -301,6 +302,6 @@ class OrderController extends Controller
             $data = $this->orderStatusRepo->statusByInvoice($invoice);
         }
 
-        return view('customer.order.tracking', compact('invoice', 'data'));
+        return view('order.tracking', compact('invoice', 'data'));
     }
 }

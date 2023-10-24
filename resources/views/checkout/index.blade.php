@@ -25,83 +25,90 @@
 
         <section class="shopping-checkout-wrap section-space">
             <div class="container">
-                <form action="{{ route('order.store') }}" method="POST" id="orderForm">
-                    @csrf
-                    @include('checkout.coupon-apply')
-                    <div class="row">
-                        @include('checkout.billing-address')
-                        <div class="col-lg-6">
-                            
-                            <div class="checkout-order-details-wrap">
-                                <div class="order-details-table-wrap table-responsive">
-                                    <h2 class="title mb-25">Your order</h2>
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th class="product-name">Product</th>
-                                                <th class="product-total">Total</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="table-body">
-                                            @foreach ($cart as $item)
-                                                @php
-                                                    $subTotal = $item['qty'] * $item['product_price'];
-                                                    $total += $subTotal;
-                                                @endphp
-                                                <tr class="cart-item">
-                                                    <td class="product-name"> {{ $item['product_name'] }}
-                                                    </td>
-                                                    <td class="product-total">{{ $item['qty'] }} X
-                                                        ৳{{ $item['product_price'] }}</td>
+                @if ($cart)
+                    <form action="{{ route('order.store') }}" method="POST" id="orderForm">
+                        @csrf
+                        <input type="hidden" name="payment_method" value="COD" id="payment_method">
+                        @include('checkout.coupon-apply')
+                        <div class="row">
+                            @include('checkout.billing-address')
+                            <div class="col-lg-6">
+                                
+                                <div class="checkout-order-details-wrap">
+                                    <div class="order-details-table-wrap table-responsive">
+                                        <h2 class="title mb-25">Your order</h2>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="product-name">Product</th>
+                                                    <th class="product-total">Total</th>
                                                 </tr>
-                                            @endforeach
-                                        </tbody>
-                                        <tfoot class="table-foot">
+                                            </thead>
+                                            <tbody class="table-body">
+                                                @foreach ($cart as $item)
+                                                    @php
+                                                        $subTotal = $item['qty'] * $item['product_price'];
+                                                        $total += $subTotal;
+                                                    @endphp
+                                                    <tr class="cart-item">
+                                                        <td class="product-name"> {{ $item['product_name'] }}
+                                                        </td>
+                                                        <td class="product-total">{{ $item['qty'] }} X
+                                                            ৳{{ $item['product_price'] }}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                            <tfoot class="table-foot">
 
-                                            <input type="hidden" value="{{ $total - $coupon_discount }}"
-                                                id="totalNcoupon_discount">
-                                            <input type="hidden" value="{{ $total }}" id="subTotal">
+                                                <input type="hidden" value="{{ $total - $coupon_discount }}"
+                                                    id="totalNcoupon_discount">
+                                                <input type="hidden" value="{{ $total }}" id="subTotal">
 
-                                            <input type="hidden" value="{{ env('delivery_charge_outside_dhaka') }}"
-                                                id="delivery_charge">
+                                                <input type="hidden" value="{{ env('delivery_charge_outside_dhaka') }}"
+                                                    id="delivery_charge">
 
-                                            <input type="hidden" value="{{ $coupon_discount }}" id="coupon_amount">
+                                                <input type="hidden" value="{{ $coupon_discount }}" id="coupon_amount">
 
-                                            <tr class="cart-subtotal">
-                                                <th>Subtotal</th>
-                                                <td>৳{{ $total }}</td>
-                                            </tr>
-                                            <tr class="shipping">
-                                                <th>Shipping</th>
-                                                <td><span
-                                                        id="show_delivery_charge">৳{{ env('delivery_charge_outside_dhaka') }}</span>
-                                                </td>
-                                            </tr>
-                                            <tr class="shipping">
-                                                <th>Coupon</th>
-                                                <td>৳ <span id="show_coupon_amount">{{ $coupon_discount }}</span></td>
-                                            </tr>
-                                            <tr class="order-total">
-                                                <th>Total </th>
-                                                <td><span
-                                                        id="total">৳{{ $total + env('delivery_charge_outside_dhaka') - $coupon_discount }}</span>
-                                                </td>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                    <div class="shop-payment-method">
-                                        <p class="p-text">Your personal data will be used to process your order, support your
-                                            experience throughout this website, and for other purposes described in our <a
-                                                href="#/">privacy policy.</a></p>
-                                        
-                                        <a class="btn-place-order" id="confirm_order">Place order</a>
+                                                <tr class="cart-subtotal">
+                                                    <th>Subtotal</th>
+                                                    <td>৳{{ $total }}</td>
+                                                </tr>
+                                                <tr class="shipping">
+                                                    <th>Shipping</th>
+                                                    <td><span
+                                                            id="show_delivery_charge">৳{{ env('delivery_charge_outside_dhaka') }}</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="shipping">
+                                                    <th>Coupon</th>
+                                                    <td>৳ <span id="show_coupon_amount">{{ $coupon_discount }}</span></td>
+                                                </tr>
+                                                <tr class="order-total">
+                                                    <th>Total </th>
+                                                    <td><span
+                                                            id="total">৳{{ $total + env('delivery_charge_outside_dhaka') - $coupon_discount }}</span>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                        <div class="shop-payment-method">
+                                            <p class="p-text">Your personal data will be used to process your order, support your
+                                                experience throughout this website, and for other purposes described in our <a
+                                                    href="#/">privacy policy.</a></p>
+                                            
+                                            <a class="btn-place-order" id="confirm_order">Place order</a>
+                                        </div>
                                     </div>
                                 </div>
+                                <!--== End Order Details Accordion ==-->
                             </div>
-                            <!--== End Order Details Accordion ==-->
                         </div>
+                    </form>
+                @else
+                    <div class="text-center">
+                        <h5>Cart is empty continue shopping</h5>
                     </div>
-                </form>
+                @endif
             </div>
         </section>
         <!--== End Shopping Checkout Area Wrapper ==-->

@@ -15,7 +15,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input id="coupon_code" name="coupon_code" value="{{ $coupon['coupon_code'] }}"
+                                    <input id="coupon_code" name="coupon_code" value="{{ $coupon['coupon_code'] ?? '' }}"
                                         class="form-control" type="text" placeholder="Coupon code">
                                 </div>
                             </div>

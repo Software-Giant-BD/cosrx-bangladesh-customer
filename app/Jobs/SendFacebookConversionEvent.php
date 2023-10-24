@@ -44,6 +44,7 @@ class SendFacebookConversionEvent implements ShouldQueue
         // Log::debug($this->invoiceData);
         Log::info("Facebook capi job start");
 
+        return true;
         
         $api = Api::init(null, null, $this->accessToken);
         $api->setLogger(new CurlLogger());
