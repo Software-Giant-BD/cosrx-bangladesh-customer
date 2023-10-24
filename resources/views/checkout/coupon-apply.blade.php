@@ -16,11 +16,11 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input class="form-control" type="text" placeholder="Coupon code">
+                                        <input id="coupon_code" name="coupon_code" value="" class="form-control" type="text" placeholder="Coupon code">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <button type="button" class="btn-coupon">Apply coupon</button>
+                                    <button id="coupon_redeem" type="button" class="btn-coupon">Apply coupon</button>
                                 </div>
                             </div>
                         </form>
