@@ -74,3 +74,6 @@
 </section>
 
 @endsection
+@section("js")
+@include("products.product-cart-quick-view")
+@endsection
