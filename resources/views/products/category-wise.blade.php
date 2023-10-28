@@ -1,48 +1,76 @@
 @extends('layouts.index')
 @section('main')
-<div class="slider-area pb-4">
-    <div style="padding-top:115px" id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="{{ asset('assets/images/slides/slide_home_2.jpg') }}" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="{{ asset('assets/images/slides/slide_home_2.jpg') }}" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="{{ asset('assets/images/slides/slide_home_2.jpg') }}" class="d-block w-100" alt="...">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-</div>
-<section class="section-space pt-0">
+@include("home.slider")
+<section class="section-space pt-0 mt-5">
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <div class="section-title">
-                    <h2 class="title">{{$category? $category->name : "Category Wise"}} Products</h2>
-                    <p class="m-0">{{$category?->mdescription}}</p>
+                    <h2 class="title">{{$info? $info->name : "Category Wise"}} Products</h2>
+                    <p class="m-0">{{$info?->mdescription}}</p>
                 </div>
             </div>
         </div>
+        <div class="row mb-n4 mb-sm-n10 g-3 g-sm-6">
+            @foreach ($data as $item)
+                <div class="col-6 col-lg-4 mb-4 mb-sm-9">
+                    <!--== Start Product Item ==-->
+                    <div class="product-item product-st2-item">
+                        <div class="product-thumb">
+                            <a class="d-block" href="product-details.html">
+                                <img src="{{ env('Admin_url') . $item->image }}" width="370" height="450"
+                                    alt="Image-HasTech">
+                            </a>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-rating">
+                                <div class="rating">
+                                    @for($i=1;$i<=5;$i++)
+                                        @if ($i> $item->rating)
+                                            <i class="fa fa-star-o"></i>
+                                        @else
+                                            <i class="fa fa-star"></i>
+                                        @endif
+                                    @endfor
+                                </div>
+                                <div class="reviews">{{$item->review_count}} reviews</div>
+                            </div>
+                            <h4 class="title"><a href="product-details.html">{{$item->name}}h</a></h4>
+                            <div class="prices">
+                                <span class="price">৳{{$item->discount}}</span>
+                                <span class="price-old">৳{{$item->price}}</span>
+                            </div>
+                            <div class="product-action">
+                                <button type="button" class="product-action-btn action-btn-cart cart_add_btn" data-qty="1" data-product_id="{{ $item->id }}">
+                                    <span>Add to cart</span>
+                                </button>
+                                <button type="button" data-product="{{ json_encode($item) }}" class="product-action-btn action-btn-quick-view"
+                                    data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
+                                    <i class="fa fa-expand"></i>
+                                </button>
+                                <button type="button" class="product-action-btn action-btn-wishlist wish_add_btn">
+                                    <i class="fa fa-heart-o"></i>
+                                </button>
+                            </div>
+                            <div class="product-action-bottom">
+                                <button type="button" data-product="{{ json_encode($item) }}" class="product-action-btn action-btn-quick-view" 
+                                    data-bs-toggle="modal" data-bs-target="#action-QuickViewModal">
+                                    <i class="fa fa-expand"></i>
+                                </button>
+                                <button type="button" class="product-action-btn action-btn-wishlist wish_add_btn">
+                                    <i class="fa fa-heart-o"></i>
+                                </button>
+                                <button type="button" class="product-action-btn action-btn-cart cart_add_btn" data-qty="1" data-product_id="{{ $item->id }}">
+                                    <span>Add to cart</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--== End prPduct Item ==-->
+                </div>
+            @endforeach
+        </div>
     </div>
 </section>
+
 @endsection
