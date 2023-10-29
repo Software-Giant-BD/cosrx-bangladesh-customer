@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Nafis">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <input id="Admin_url" type="hidden" value="{{ env('Admin_url') }}" />
+    <input id="Admin_url_public" type="hidden" value="{{ env('Admin_url_public') }}" />
 
     <title>@yield('title', 'COSRX Bangladesh Cosmetic & Beauty Salon Website')</title>
     <meta name="description" content="@yield('description')">

@@ -40,7 +40,7 @@
                             </div>
                             <h4 class="title"><a href="{{ route('product.details',['slug'=>$item->slug]) }}">{{$item->name}}</a></h4>
                             <div class="prices">
-                                <span class="price">৳{{$item->discount}}</span>
+                                <span class="price">৳{{ $item->price-$item->discount}}</span>
                                 <span class="price-old">৳{{$item->price}}</span>
                             </div>
                             <div class="product-action">

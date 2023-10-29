@@ -1,9 +1,10 @@
 <script>
     function addToLi(newItem) {
+        console.log(newItem);
         let currentCartQty = parseInt($("#side_total_cart_item").text(), 10) + 1;
         $("#side_total_cart_item").text(currentCartQty)
 
-        var Admin_url = $("#Admin_url").val();
+        var Admin_url = $("#Admin_url_public").val();
         var imagePath = Admin_url + newItem.product_image;
 
         // new list item
