@@ -199,6 +199,11 @@ class ProductRepository extends Repository implements IProductRepository
         return Product::where('skin_concern_id', $skin_concern_id)->skip($skip)->take($take)->get();
     }
 
+    public function ingredientWiseWithOffSet($id, $skip = 0, $take = 10)
+    {
+        return Product::where('ingredient_id', $id)->skip($skip)->take($take)->get();
+    }
+
     public function topSellingProduct($lastMonthNumber, $skip = 0, $take = 8)
     {
         return Product::whereIn('id', function ($query) {

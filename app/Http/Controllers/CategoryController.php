@@ -30,7 +30,7 @@ class CategoryController extends Controller
         if (! isset($info)) {
             return redirect(route('home'));
         }
-        $data = $this->productRepo->categoryWiseWithOffSet($info->id, 0, 3);
+        $data = $this->productRepo->categoryWiseWithOffSet($info->id, 0, 10);
         $dataCount = 0;
         return view('products.category.category-wise', compact('info', 'data', 'dataCount'));
     }
