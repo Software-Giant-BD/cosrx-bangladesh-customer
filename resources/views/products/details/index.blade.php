@@ -134,11 +134,11 @@
                             </div>
                         </div>
                     </div>
-                    @include('products.submit-review')
+                    @include('products.details.submit-review')
                 </div>
             </div>
         </section>
-        @include('products.related-products')
+        @include('products.details.related-products')
     </main>
 @endsection
 @section('js')

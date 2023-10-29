@@ -30,7 +30,7 @@ class ProductController extends Controller
         $text = $request->text;
         $data = $this->mainRepo->search($text, $skip = 0, $take = 12);
 
-        return view('customer.product.filter-search.search', compact('text', 'data'));
+        return view('products.filter-search.search', compact('text', 'data'));
     }
 
     public function filter(Request $request)
@@ -44,7 +44,7 @@ class ProductController extends Controller
         $filterData['category_selected'] = $input['category_id'];
         $filterData['brand_selected'] = $input['brand_id'];
 
-        return view('customer.product.filter-search.filter', compact('text', 'data', 'filterData'));
+        return view('products.filter-search.filter', compact('text', 'data', 'filterData'));
     }
 
     public function index()
@@ -53,14 +53,14 @@ class ProductController extends Controller
         $data = $this->mainRepo->productWithOffSet($skip = 0, $take = 12);
         $dataCount = 0;
 
-        return view('customer.product.index', compact('data', 'dataCount', 'filterData'));
+        return view('products.index', compact('data', 'dataCount', 'filterData'));
     }
 
     public function loadIndexProduct($dataCount)
     {
         $data = $this->mainRepo->productWithOffSet($dataCount, 12);
 
-        return view('customer.product.load-index-products', compact('data', 'dataCount'));
+        return view('products.load-index-products', compact('data', 'dataCount'));
     }
 
     public function detailsBySlug($slug)
@@ -72,7 +72,7 @@ class ProductController extends Controller
         }
         $reviews = $this->reviewRepo->productWiseReview($product->id);
         $related_products = $this->relatedProducts($product->id);
-        return view("products.index",compact("product",'related_products', 'reviews'));
+        return view("products.details.index",compact("product",'related_products', 'reviews'));
        
     }
 
@@ -104,7 +104,7 @@ class ProductController extends Controller
         }
         $reviews = $this->reviewRepo->productWiseReview($id);
 
-        return view('customer.product.details.index', compact('data', 'reviews'));
+        return view('products.details.index', compact('data', 'reviews'));
     }
 
     public function reviewCreate($id, $name = null)
@@ -114,7 +114,7 @@ class ProductController extends Controller
             return back()->with('warning', 'Product not found!');
         }
 
-        return view('customer.product.review.create', compact('data'));
+        return view('products.review.create', compact('data'));
     }
 
     public function reviewStore(Request $request)
@@ -140,7 +140,7 @@ class ProductController extends Controller
             return back()->with('warning', $e->getMessage())->withInput();
         }
 
-        return redirect(route('customer.product.details', ['id' => $request->product_id]))->with('success', 'Review successfully submit!');
+        return redirect(route('products.details', ['id' => $request->product_id]))->with('success', 'Review successfully submit!');
     }
 }
 
