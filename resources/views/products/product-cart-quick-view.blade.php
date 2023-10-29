@@ -14,7 +14,7 @@
     $( document ).ready(function() {
         $(document).on("click", ".action-btn-quick-view", function() {
             var product = $(this).data('product');
-            var adminUrl = "{{ env('Admin_url') }}";
+            var adminUrl = "{{ env('Admin_url_public') }}";
             var productImage = adminUrl + product.image;
             setStarsHtml(product.rating)
             
@@ -23,6 +23,8 @@
             $("#quickViewProductReviewCount").text(product.review_count);
             $("#quickViewProductDetails").text(product.short_description);
             $("#quickViewProductDiscount").text(`৳ ${product.discount}`);
+            $("#quickViewProductPrice").text(`৳ ${product.price}`);
+
         });
     });
 </script>

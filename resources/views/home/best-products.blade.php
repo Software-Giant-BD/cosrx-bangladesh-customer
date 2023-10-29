@@ -16,8 +16,8 @@
                     <div class="product-item product-st2-item">
                         <div class="product-thumb">
                             <a class="d-block" href="{{ route('product.details',['slug'=>$item->slug]) }}">
-                                <img src="{{ env('Admin_url') . $item->image }}" width="370" height="450"
-                                    alt="Image-HasTech">
+                                <img src="{{ env('Admin_url_public') . $item->image }}" width="370" height="450"
+                                    alt="{{ $item->img_alt }}" title="{{ $item->img_title }}">
                             </a>
                         </div>
                         <div class="product-info">
