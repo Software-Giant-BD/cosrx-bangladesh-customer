@@ -30,9 +30,9 @@
                                             <span class="price mr-3" id="quickViewProductDiscount">0</span>
                                             <span class="price-old" id="quickViewProductPrice">0</span>
                                         </h4>
-                                        <div class="product-details-cart-wishlist">
+                                        {{-- <div class="product-details-cart-wishlist">
                                             <button type="button" id="quickViewCartProductId" class="btn cart_add_btn" data-qty="1" data-product_id="0">Add to cart</button>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                                 <!--== End Product Info Area ==-->

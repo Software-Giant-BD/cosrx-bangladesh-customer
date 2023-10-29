@@ -25,7 +25,6 @@
             $("#quickViewProductDiscount").text(`৳ ${product.price-product.discount}`);
             $("#quickViewProductPrice").text(`৳ ${product.price}`);
             $("#quickViewCartProductId").attr('data-product_id', product.id);
-
         });
     });
 </script>
