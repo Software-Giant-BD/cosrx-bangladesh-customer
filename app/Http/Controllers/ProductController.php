@@ -9,6 +9,6 @@ class ProductController extends Controller
     function detailsBySlug($slug)
     {
         $product = Product::whereSlug($slug)->first();
-        return $product;
+        return view("products.index",compact("product"));
     }
 }
