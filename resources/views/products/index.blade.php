@@ -48,8 +48,6 @@
                                     <span class="price-old">৳{{ $product->price }}</span>
                                 </h4>
                                 <div class="product-details-cart-wishlist">
-                                    <button type="button" class="btn-wishlist" data-bs-toggle="modal"
-                                        data-bs-target="#action-WishlistModal"><i class="fa fa-heart-o"></i></button>
                                     <button type="button" class="btn" data-bs-toggle="modal"
                                         data-bs-target="#action-CartAddModal">Add to cart</button>
                                 </div>
