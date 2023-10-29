@@ -16,7 +16,7 @@
                                 <div class="product-item product-st2-item">
                                     <div class="product-thumb">
                                         <a class="d-block" href="{{ route('product.details',['slug'=>$item->slug]) }}">
-                                            <img src="http://127.0.0.1:8001/admin/assets/images/product/1006-neogen-dermalogy-collagen-cream-50ml.webp" width="370" height="450"
+                                            <img src="{{ $item->image }}" width="370" height="450"
                                                 alt="{{ $item->img_alt }}" title="{{ $item->img_title }}">
                                         </a>
                                     </div>
