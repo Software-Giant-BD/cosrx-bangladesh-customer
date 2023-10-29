@@ -3,13 +3,38 @@
 namespace App\Http\Controllers;
 
 use App\Models\SkinConcern;
+use App\Repositories\Interface\IProductRepository;
+use App\Repositories\Interface\ISkinConcernRepository;
 
 class SkinConcernController extends Controller
 {
-    public function skinConcernWiseProduct($slug = null)
-    {
-        $skinConcern = SkinConcern::where('slug', $slug)->first();
+    private $mainRepo;
 
-        return view('products.skin-concern-wise', compact('slug', 'skinConcern'));
+    private $productRepo;
+
+    public function __construct(ISkinConcernRepository $mainRepo, IProductRepository $productRepo)
+    {
+        $this->mainRepo = $mainRepo;
+        $this->productRepo = $productRepo;
+    }
+
+    public function skinConcernWiseProduct($slug, $name = null)
+    {
+        $info = SkinConcern::where("slug", $slug)->first();
+        if (! isset($info)) {
+            return redirect(route('home'));
+        }
+        $data = $this->productRepo->skinConcernWiseWithOffSet($info->id, 0, 1);
+        $dataCount = 0;
+
+        return view('products.skin-concern.skin-concern-wise', compact('info', 'data', 'dataCount'));
+    }
+
+    public function loadSkinConcernProduct($skin_concern_id, $dataCount)
+    {
+        $info = $this->mainRepo->get($skin_concern_id);
+        $data = $this->productRepo->skinConcernWiseWithOffSet($skin_concern_id, $dataCount, 20);
+
+        return view('products.skin-concern.load-product', compact('data', 'dataCount', 'info'));
     }
 }
