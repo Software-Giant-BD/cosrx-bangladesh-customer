@@ -11,7 +11,7 @@
                             <div class="col-lg-6">
                                 <!--== Start Product Thumbnail Area ==-->
                                 <div class="product-single-thumb">
-                                    <img id="quickViewProductImage" src="{{asset('assets/images/shop/quick-view1.webp')}}" width="544" height="560" alt="Image-HasTech">
+                                    <img id="quickViewProductImage" src="{{asset('assets/images/shop/quick-view1.webp')}}" width="544" height="560" >
                                 </div>
                                 <!--== End Product Thumbnail Area ==-->
                             </div>
