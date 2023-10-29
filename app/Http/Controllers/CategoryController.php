@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Services\FilterService;
+use Illuminate\Support\Facades\Log;
 use App\Repositories\Interface\IProductRepository;
 use App\Repositories\Interface\ICategoryRepository;
 
@@ -29,16 +30,16 @@ class CategoryController extends Controller
         if (! isset($info)) {
             return redirect(route('home'));
         }
-        $data = $this->productRepo->categoryWiseWithOffSet($info->id, 0, 20);
+        $data = $this->productRepo->categoryWiseWithOffSet($info->id, 0, 3);
         $dataCount = 0;
-        return view('products.category-wise', compact('info', 'data', 'dataCount'));
+        return view('products.category.category-wise', compact('info', 'data', 'dataCount'));
     }
 
     public function loadCategoryProduct($category_id, $dataCount)
     {
         $info = $this->mainRepo->get($category_id);
         $data = $this->productRepo->categoryWiseWithOffSet($category_id, $dataCount, 20);
-
-        return view('customer.product.category.load-product', compact('data', 'dataCount', 'info'));
+        Log::info($data);
+        return view('products.category.load-category-wise', compact('data', 'dataCount', 'info'));
     }
 }

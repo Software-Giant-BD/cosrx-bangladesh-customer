@@ -1,4 +1,8 @@
 @extends('layouts.index')
+@section('title', $info->name." Products")
+@section('description', $info->mdescription)
+@section('keywords', $info->mkeyword)
+
 @section('main')
 @include("home.slider")
 <section class="section-space pt-0 mt-5">
@@ -11,10 +15,9 @@
                 </div>
             </div>
         </div>
-        <div class="row mb-n4 mb-sm-n10 g-3 g-sm-6">
+        <div class="row mb-n4 mb-sm-n10 g-3 g-sm-6" id="load-data">
             @foreach ($data as $item)
                 <div class="col-6 col-lg-4 mb-4 mb-sm-9">
-                    <!--== Start Product Item ==-->
                     <div class="product-item product-st2-item">
                         <div class="product-thumb">
                             <a class="d-block" href="product-details.html">
@@ -69,11 +72,24 @@
                     <!--== End prPduct Item ==-->
                 </div>
             @endforeach
+            <p class="load-more" dataCount="{{ $dataCount }}" dataId={{ $info->id }}></p>
         </div>
     </div>
 </section>
 
 @endsection
 @section("js")
-@include("products.product-cart-quick-view")
+    @include("products.product-cart-quick-view")
+
+    <script src="{{ asset('assets/js/load-data.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            var dataId = $('.load-more').attr('dataId');
+            console.log(dataId);
+            var url = '/category-wise/load-product/' + dataId;
+            loadData(url)
+        }); //document ready end
+    </script>
+    
 @endsection
