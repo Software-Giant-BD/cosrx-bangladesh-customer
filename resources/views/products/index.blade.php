@@ -11,7 +11,7 @@
                     <div class="col-lg-6">
                         <div class="product-details-thumb">
                             <img src="{{ env('Admin_url').$product->image }}" width="570" height="693"
-                                alt="Image">
+                                alt="{{ $product->img_alt }}" title="{{ $product->img_title }}">
                             <span class="flag-new">new</span>
                         </div>
                     </div>
@@ -73,80 +73,30 @@
 
                             <div class="tab-pane fade show active" id="review" role="tabpanel"
                                 aria-labelledby="review-tab">
-                                <!--== Start Reviews Content Item ==-->
+                                @foreach ($reviews as $item)
                                 <div class="product-review-item">
                                     <div class="product-review-top">
                                         <div class="product-review-thumb">
-                                            <img src="assets/images/shop/product-details/comment1.webp" alt="Images">
+                                            <img src="{{ asset("assets/images/shop/product-details/comment1.webp") }}" alt="Images">
                                         </div>
                                         <div class="product-review-content">
-                                            <span class="product-review-name">Tomas Doe</span>
-                                            <span class="product-review-designation">Delveloper</span>
+                                            <span class="product-review-name">{{ $item->customer?->name }}</span>
+                                           
                                             <div class="product-review-icon">
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-half-o"></i>
+                                                @for($i=1;$i<=5;$i++)
+                                                    @if ($i> $item->star)
+                                                        <i class="fa fa-star-o"></i>
+                                                    @else
+                                                        <i class="fa fa-star"></i>
+                                                    @endif
+                                                @endfor
                                             </div>
                                         </div>
                                     </div>
-                                    <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra
-                                        amet, sodales faucibus nibh. Vivamus amet potenti ultricies nunc gravida duis.
-                                        Nascetur scelerisque massa sodales.</p>
-                                    <button type="button" class="review-reply"><i class="fa fa fa-undo"></i></button>
+                                    <h5>{{ $item->title }}</h5>
+                                    <p class="desc">{{$item->review}}</p>
                                 </div>
-                                <!--== End Reviews Content Item ==-->
-
-                                <!--== Start Reviews Content Item ==-->
-                                <div class="product-review-item product-review-reply">
-                                    <div class="product-review-top">
-                                        <div class="product-review-thumb">
-                                            <img src="assets/images/shop/product-details/comment2.webp" alt="Images">
-                                        </div>
-                                        <div class="product-review-content">
-                                            <span class="product-review-name">Tomas Doe</span>
-                                            <span class="product-review-designation">Delveloper</span>
-                                            <div class="product-review-icon">
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-half-o"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra
-                                        amet, sodales faucibus nibh. Vivamus amet potenti ultricies nunc gravida duis.
-                                        Nascetur scelerisque massa sodales.</p>
-                                    <button type="button" class="review-reply"><i class="fa fa fa-undo"></i></button>
-                                </div>
-                                <!--== End Reviews Content Item ==-->
-
-                                <!--== Start Reviews Content Item ==-->
-                                <div class="product-review-item mb-0">
-                                    <div class="product-review-top">
-                                        <div class="product-review-thumb">
-                                            <img src="assets/images/shop/product-details/comment3.webp" alt="Images">
-                                        </div>
-                                        <div class="product-review-content">
-                                            <span class="product-review-name">Tomas Doe</span>
-                                            <span class="product-review-designation">Delveloper</span>
-                                            <div class="product-review-icon">
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-half-o"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra
-                                        amet, sodales faucibus nibh. Vivamus amet potenti ultricies nunc gravida duis.
-                                        Nascetur scelerisque massa sodales.</p>
-                                    <button type="button" class="review-reply"><i class="fa fa fa-undo"></i></button>
-                                </div>
-                                <!--== End Reviews Content Item ==-->
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -155,7 +105,6 @@
             </div>
         </section>
         @include("products.related-products")
-
     </main>
 @endsection
 @section('js')
