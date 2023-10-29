@@ -1,16 +1,47 @@
 @extends('layouts.index')
-@section('title', $product->name . ' Products')
+
+@php
+    $image = env("Admin_url_public").$product->image;
+@endphp
+@section('title', $product->name)
 @section('description', $product->mdescription)
 @section('keywords', $product->mkeyword)
+@section('open_graph_title', $product->name)
+@section('open_graph_description', $product->mdescription)
+@section('open_graph_image',$image)
+@section('twitter_title', $product->name)
+@section('twitter_description', $product->mdescription)
+@section('twitter_image', $image)
 
 @section('main')
     <main class="main-content">
+        <script type="application/ld+json">
+            {
+              "@context": "https://schema.org/", 
+              "@type": "Product", 
+              "name": "{{ $product->name }}",
+              "image": "{{$image}}",
+              "description": "{{$product->mdescription}}",
+              "brand": {
+                "@type": "Brand",
+                "name": "{{$product->brand->name}}"
+              },
+              "sku": "{{$product->code}}",
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "{{$product->rating}}",
+                "bestRating": "5",
+                "worstRating": "1",
+                "ratingCount": "{{$product->review_count}}"
+              }
+            }
+      </script>
         <section class="section-space" style="padding: 50px 0; margin-top: 175px;">
             <div class="container">
                 <div class="row product-details">
                     <div class="col-lg-6">
                         <div class="product-details-thumb">
-                            <img src="{{ env('Admin_url_public') . $product->image }}" width="570" height="693"
+                            <img src="{{ $image }}" width="570" height="693"
                                 alt="{{ $product->img_alt }}" title="{{ $product->img_title }}">
                             <span class="flag-new">new</span>
                         </div>
@@ -39,17 +70,16 @@
                             </div>
                             <div class="product-details-pro-qty">
                                 <div class="pro-qty">
-                                    <input type="text" title="Quantity" value="01">
+                                    <input type="text" title="Quantity" value="1" id="cart_qty" data-product_id="{{ $product->id }}">
                                 </div>
                             </div>
                             <div class="product-details-action">
                                 <h4 class="price details-price">
-                                    <span class="price mr-3">৳{{ $product->discount }}</span>
+                                    <span class="price mr-3">৳{{ $product->price-$product->discount }}</span>
                                     <span class="price-old">৳{{ $product->price }}</span>
                                 </h4>
                                 <div class="product-details-cart-wishlist">
-                                    <button type="button" class="btn" data-bs-toggle="modal"
-                                        data-bs-target="#action-CartAddModal">Add to cart</button>
+                                    <button type="button" class="btn cart_add_btn_details" >Add to cart</button>
                                 </div>
                             </div>
                         </div>
