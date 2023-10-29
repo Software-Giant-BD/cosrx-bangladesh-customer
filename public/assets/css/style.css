@@ -3878,6 +3878,10 @@ section.page-header-area {
   display: flex;
   margin-top: 50px;
 }
+.details-price{
+  display: flex;
+  justify-content: space-between; 
+}
 @media only screen and (min-width: 992px) and (max-width: 1199px), only screen and (min-width: 768px) and (max-width: 991px), only screen and (max-width: 767px) {
   .product-details-action {
     margin-top: 30px;
@@ -3898,6 +3902,7 @@ section.page-header-area {
   font-size: 50px;
   font-weight: 400;
   margin-bottom: 0;
+  margin-right: 6px;
   line-height: 1;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px), only screen and (min-width: 768px) and (max-width: 991px), only screen and (max-width: 767px) {
@@ -4072,6 +4077,10 @@ section.page-header-area {
   text-decoration: line-through;
   opacity: 0.5;
 }
+.price-old{
+  text-decoration: line-through;
+}
+
 .group-product-list .info-text {
   font-size: 14px;
   font-weight: 600;

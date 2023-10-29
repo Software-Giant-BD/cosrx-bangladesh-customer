@@ -8,7 +8,7 @@ class ProductController extends Controller
 {
     function detailsBySlug($slug)
     {
-        $product = Product::whereSlug($slug)->first();
+        $product = Product::with("category:id,name")->withCount("review")->whereSlug($slug)->first();
         return view("products.index",compact("product"));
     }
 }

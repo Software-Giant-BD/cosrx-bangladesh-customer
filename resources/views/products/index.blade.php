@@ -17,29 +17,23 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="product-details-content">
-                            <h5 class="product-details-collection">Premioum collection</h5>
+                            <h5 class="product-details-collection">{{ $product->category?->name }}</h5>
                             <h3 class="product-details-title">{{ $product->name }}</h3>
                             <div class="product-details-review">
                                 <div class="product-review-icon">
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-half-o"></i>
+                                    @for($i=1;$i<=5;$i++)
+                                        @if ($i> $product->rating)
+                                            <i class="fa fa-star-o"></i>
+                                        @else
+                                            <i class="fa fa-star"></i>
+                                        @endif
+                                    @endfor
                                 </div>
-                                <button type="button" class="product-review-show">150 reviews</button>
+                                <button type="button" class="product-review-show">{{ $product->review_count }} reviews</button>
                             </div>
                             <div class="product-details-qty-list">
                                 <div class="qty-list-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="qtyList1"
-                                        checked>
-                                    <label class="form-check-label" for="qtyList1">15 ml bottol <b>$250.00</b></label>
-                                </div>
-
-                                <div class="qty-list-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="qtyList2">
-                                    <label class="form-check-label" for="qtyList2">25 ml bottol <b>$350.00</b> <span
-                                            class="extra-offer">extra 25%</span></label>
+                                    <p>{{$product->short_description}}</p>
                                 </div>
                             </div>
                             <div class="product-details-pro-qty">
@@ -47,13 +41,11 @@
                                     <input type="text" title="Quantity" value="01">
                                 </div>
                             </div>
-                            <div class="product-details-shipping-cost">
-                                <input class="form-check-input" type="checkbox" value="" id="ShippingCost" checked>
-                                <label class="form-check-label" for="ShippingCost">Shipping from USA, Shipping Fees
-                                    $4.22</label>
-                            </div>
                             <div class="product-details-action">
-                                <h4 class="price">$254.22</h4>
+                                <h4 class="price details-price"> 
+                                    <span class="price mr-3">৳{{$product->discount}}</span>
+                                    <span class="price-old">৳{{$product->price}}</span>
+                                </h4>
                                 <div class="product-details-cart-wishlist">
                                     <button type="button" class="btn-wishlist" data-bs-toggle="modal"
                                         data-bs-target="#action-WishlistModal"><i class="fa fa-heart-o"></i></button>
