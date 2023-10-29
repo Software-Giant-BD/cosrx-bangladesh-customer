@@ -19,9 +19,9 @@ Route::group(['prefix' => 'category-wise', 'as' => 'category.'], function () {
     Route::get('load-product/{category_id}/{dataCount}', [CategoryController::class, 'loadCategoryProduct'])->name('products.load');
 });
 
-Route::group(['prefix' => 'skin-concern', 'as' => 'skin.concern.'], function () {
+Route::group(['prefix' => 'skin-concern-wise', 'as' => 'skin.concern.'], function () {
     Route::get('products/{slug?}', [SkinConcernController::class, 'skinConcernWiseProduct'])->name('products');
-    Route::get('load-product/{skin_concern_id}/{dataCount}', [SkinConcernController::class, 'loadProduct'])->name('products.load');
+    Route::get('load-product/{skin_concern_id}/{dataCount}', [SkinConcernController::class, 'loadSkinConcernProduct'])->name('products.load');
 });
 
 Route::group(['prefix' => 'ingredient', 'as' => 'ingredient.'], function () {

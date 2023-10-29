@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="section-title">
-                    <h2 class="title">{{$info? $info->name : "Category Wise"}} Products</h2>
+                    <h2 class="title">{{$info? $info->name : "Skin Concern Wise"}} Products</h2>
                     <p class="m-0">{{$info?->mdescription}}</p>
                 </div>
             </div>
@@ -87,7 +87,7 @@
         $(document).ready(function() {
             var dataId = $('.load-more').attr('dataId');
             console.log(dataId);
-            var url = '/category-wise/load-product/' + dataId;
+            var url = '/skin-concern-wise/load-product/' + dataId;
             loadData(url)
         }); //document ready end
     </script>
