@@ -23,6 +23,8 @@
             $("#quickViewProductReviewCount").text(product.review_count);
             $("#quickViewProductDetails").text(product.short_description);
             $("#quickViewProductDiscount").text(`৳ ${product.discount}`);
+            $("#quickViewProductPrice").text(`৳ ${product.price}`);
+
         });
     });
 </script>

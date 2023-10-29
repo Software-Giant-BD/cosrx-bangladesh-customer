@@ -84,6 +84,8 @@ class ProductController extends Controller
             'products.name',
             'products.slug',
             'products.price',
+            'products.discount',
+            'products.short_description',
             'products.mtitle',
             'products.mkeyword',
             'products.mdescription',

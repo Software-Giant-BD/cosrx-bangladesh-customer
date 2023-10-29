@@ -32,7 +32,10 @@
                                         </div>
                                     </div>
                                     <div class="product-details-action">
-                                        <h4 class="price" id="quickViewProductDiscount">0</h4>
+                                        <h4 class="price details-price"> 
+                                            <span class="price mr-3" id="quickViewProductDiscount">0</span>
+                                            <span class="price-old" id="quickViewProductPrice">0</span>
+                                        </h4>
                                         <div class="product-details-cart-wishlist">
                                             <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">Add to cart</button>
                                         </div>
