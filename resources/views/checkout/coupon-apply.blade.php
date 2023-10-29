@@ -3,10 +3,10 @@
     <div class="coupon-accordion" id="CouponAccordion">
         <div class="card">
             <h3>
-                <i class="fa fa-info-circle"></i>
-                Have a Coupon?
-                <a href="#/" data-bs-toggle="collapse" data-bs-target="#couponaccordion">Click here to enter your
-                    code</a>
+                <a href="#/" data-bs-toggle="collapse" data-bs-target="#couponaccordion">
+                    <i class="fa fa-info-circle"></i>
+                    Have a Coupon? Click here to enter your code
+                </a>
             </h3>
             <div id="couponaccordion" class="collapse" data-bs-parent="#CouponAccordion">
                 <div class="card-body">
@@ -15,8 +15,9 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input id="coupon_code" name="coupon_code" value="{{ $coupon['coupon_code'] ?? '' }}"
-                                        class="form-control" type="text" placeholder="Coupon code">
+                                    <input id="coupon_code" name="coupon_code"
+                                        value="{{ $coupon['coupon_code'] ?? '' }}" class="form-control" type="text"
+                                        placeholder="Coupon code">
                                 </div>
                             </div>
                             <div class="col-md-6">
