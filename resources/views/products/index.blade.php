@@ -10,7 +10,7 @@
                 <div class="row product-details">
                     <div class="col-lg-6">
                         <div class="product-details-thumb">
-                            <img src="{{ env('Admin_url').$product->image }}" width="570" height="693"
+                            <img src="{{ env('Admin_url_public').$product->image }}" width="570" height="693"
                                 alt="{{ $product->img_alt }}" title="{{ $product->img_title }}">
                             <span class="flag-new">new</span>
                         </div>
