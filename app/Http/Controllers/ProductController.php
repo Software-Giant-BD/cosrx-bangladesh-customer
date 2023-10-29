@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Services\FilterService;
 use App\Repositories\Interface\IProductRepository;
 use App\Repositories\Interface\IProductReviewRepository;
+use App\Models\RelatedProduct;
 
 
 class ProductController extends Controller
@@ -70,9 +71,27 @@ class ProductController extends Controller
             return back()->with('warning', 'Product not found!');
         }
         $reviews = $this->reviewRepo->productWiseReview($product->id);
-        $related_products = $this->mainRepo->relatedProducts($product->id);
+        $related_products = $this->relatedProducts($product->id);
         return view("products.index",compact("product",'related_products', 'reviews'));
        
+    }
+
+    function relatedProducts($product_id)
+    {
+        return RelatedProduct::select(
+            'products.id',
+            'products.code',
+            'products.name',
+            'products.slug',
+            'products.price',
+            'products.mtitle',
+            'products.mkeyword',
+            'products.mdescription',
+            'products.image'
+        )
+            ->join('products', 'related_products', '=', 'products.id')
+            ->where('related_for', $product_id)
+            ->get();
     }
 
     public function details($id, $name = null)
