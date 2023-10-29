@@ -88,18 +88,18 @@
                 <div class="row">
                     <div class="col-lg-7">
                         <div class="nav product-details-nav" id="product-details-nav-tab" role="tablist">
-                            <button class="nav-link" id="specification-tab" data-bs-toggle="tab"
+                            <button class="nav-link active" id="specification-tab" data-bs-toggle="tab"
                                 data-bs-target="#specification" type="button" role="tab" aria-controls="specification"
-                                aria-selected="false">Specification</button>
-                            <button class="nav-link active" id="review-tab" data-bs-toggle="tab" data-bs-target="#review"
-                                type="button" role="tab" aria-controls="review" aria-selected="true">Review</button>
+                                aria-selected="true">Specification</button>
+                            <button class="nav-link" id="review-tab" data-bs-toggle="tab" data-bs-target="#review"
+                                type="button" role="tab" aria-controls="review" aria-selected="false">Review</button>
                         </div>
                         <div class="tab-content" id="product-details-nav-tabContent">
-                            <div class="tab-pane" id="specification" role="tabpanel" aria-labelledby="specification-tab">
+                            <div class="tab-pane show active" id="specification" role="tabpanel" aria-labelledby="specification-tab">
                                 <p>{!! $product->long_description !!}</p>
                             </div>
 
-                            <div class="tab-pane fade show active" id="review" role="tabpanel"
+                            <div class="tab-pane fade " id="review" role="tabpanel"
                                 aria-labelledby="review-tab">
 
                                 @forelse($reviews as $item)
