@@ -12,7 +12,7 @@
     }
 
     $( document ).ready(function() {
-        $(".action-btn-quick-view").click(function(){
+        $(document).on("click", ".action-btn-quick-view", function() {
             var product = $(this).data('product');
             var adminUrl = "{{ env('Admin_url') }}";
             var productImage = adminUrl + product.image;
