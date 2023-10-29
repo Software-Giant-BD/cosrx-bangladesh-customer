@@ -24,7 +24,7 @@ class SkinConcernController extends Controller
         if (! isset($info)) {
             return redirect(route('home'));
         }
-        $data = $this->productRepo->skinConcernWiseWithOffSet($info->id, 0, 1);
+        $data = $this->productRepo->skinConcernWiseWithOffSet($info->id, 0, 10);
         $dataCount = 0;
 
         return view('products.skin-concern.skin-concern-wise', compact('info', 'data', 'dataCount'));
