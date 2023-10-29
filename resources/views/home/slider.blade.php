@@ -1,6 +1,4 @@
-@extends('layouts.index')
-@section('main')
-<div class="slider-area pb-4">
+<div class="slider-area">
     <div style="padding-top:115px" id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
@@ -33,16 +31,3 @@
         </button>
     </div>
 </div>
-<section class="section-space pt-0">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-title">
-                    <h2 class="title">{{$category? $category->name : "Category Wise"}} Products</h2>
-                    <p class="m-0">{{$category?->mdescription}}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-@endsection

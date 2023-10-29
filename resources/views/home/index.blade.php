@@ -1,40 +1,6 @@
 @extends('layouts.index')
 @section('main')
-    <!--== Start Hero Area Wrapper ==-->
-    <div class="slider-area">
-        <div style="padding-top:115px" id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                    aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                    aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="{{ asset('assets/images/slides/slide_home_2.jpg') }}" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('assets/images/slides/slide_home_2.jpg') }}" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('assets/images/slides/slide_home_2.jpg') }}" class="d-block w-100" alt="...">
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-    </div>
-    <!--== End Hero Area Wrapper ==-->
+   @include("home.slider")
 
     <!--== Start Product Banner Area Wrapper ==-->
     <section class="section-space">
@@ -411,33 +377,5 @@
 @endsection
 
 @section("js")
-<script>
-    function setStarsHtml(rating) {
-        var starsHtml = '';
-        for (var i = 1; i <= 5; i++) {
-            if (i > rating) {
-                starsHtml += '<i class="fa fa-star-o"></i>';
-            } else {
-                starsHtml += '<i class="fa fa-star"></i>';
-            }
-        }
-        $("#quickViewProductRating").html(starsHtml);
-    }
-
-    $( document ).ready(function() {
-        $(".action-btn-quick-view").click(function(){
-            var product = $(this).data('product');
-            var adminUrl = "{{ env('Admin_url') }}";
-            var productImage = adminUrl + product.image;
-            setStarsHtml(product.rating)
-            
-            $("#quickViewProductImage").attr('src', productImage);
-            $("#quickViewProductTitle").text(product.name);
-            $("#quickViewProductReviewCount").text(product.review_count);
-            $("#quickViewProductDetails").text(product.short_description);
-            $("#quickViewProductDiscount").text(`৳ ${product.discount}`);
-        });
-    });
-</script>
-    @include('add-cart-and-wish')
+@include("products.product-cart-quick-view")
 @endsection
