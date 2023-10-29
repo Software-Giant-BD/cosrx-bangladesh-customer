@@ -5,7 +5,7 @@
      <div class="col-6 col-lg-4 mb-4 mb-sm-9">
         <div class="product-item product-st2-item">
             <div class="product-thumb">
-                <a class="d-block" href="product-details.html">
+                <a class="d-block" href="{{ route('product.details',['slug'=>$item->slug]) }}">
                     <img src="{{ env('Admin_url') . $item->image }}" width="370" height="450"
                         alt="Image-HasTech">
                 </a>
@@ -23,7 +23,7 @@
                     </div>
                     <div class="reviews">{{$item->review_count}} reviews</div>
                 </div>
-                <h4 class="title"><a href="product-details.html">{{$item->name}}h</a></h4>
+                <h4 class="title"><a href="{{ route('product.details',['slug'=>$item->slug]) }}">{{$item->name}}h</a></h4>
                 <div class="prices">
                     <span class="price">৳{{$item->discount}}</span>
                     <span class="price-old">৳{{$item->price}}</span>
