@@ -9,11 +9,9 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-6">
-                                <!--== Start Product Thumbnail Area ==-->
                                 <div class="product-single-thumb">
                                     <img id="quickViewProductImage" src="{{asset('assets/images/shop/quick-view1.webp')}}" width="544" height="560" >
                                 </div>
-                                <!--== End Product Thumbnail Area ==-->
                             </div>
                             <div class="col-lg-6">
                                 <!--== Start Product Info Area ==-->
@@ -26,18 +24,14 @@
                                         <button type="button" class="product-review-show" id="quickViewProductReviewCount">0 reviews</button>
                                     </div>
                                     <p class="mb-6" id="quickViewProductDetails">Product Details</p>
-                                    <div class="product-details-pro-qty">
-                                        <div class="pro-qty">
-                                            <input type="text" title="Quantity" value="01">
-                                        </div>
-                                    </div>
+                                    
                                     <div class="product-details-action">
                                         <h4 class="price details-price"> 
                                             <span class="price mr-3" id="quickViewProductDiscount">0</span>
                                             <span class="price-old" id="quickViewProductPrice">0</span>
                                         </h4>
                                         <div class="product-details-cart-wishlist">
-                                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">Add to cart</button>
+                                            <button type="button" id="quickViewCartProductId" class="btn cart_add_btn" data-qty="1" data-product_id="0">Add to cart</button>
                                         </div>
                                     </div>
                                 </div>

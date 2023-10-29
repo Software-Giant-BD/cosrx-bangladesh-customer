@@ -22,8 +22,9 @@
             $("#quickViewProductTitle").text(product.name);
             $("#quickViewProductReviewCount").text(product.review_count);
             $("#quickViewProductDetails").text(product.short_description);
-            $("#quickViewProductDiscount").text(`৳ ${product.discount}`);
+            $("#quickViewProductDiscount").text(`৳ ${product.price-product.discount}`);
             $("#quickViewProductPrice").text(`৳ ${product.price}`);
+            $("#quickViewCartProductId").attr('data-product_id', product.id);
 
         });
     });
