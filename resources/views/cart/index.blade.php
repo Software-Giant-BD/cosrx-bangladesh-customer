@@ -30,11 +30,10 @@
                             <thead>
                                 <tr>
                                     <th class="product-remove">&nbsp;</th>
-                                    <th class="product-thumbnail">&nbsp;</th>
+                                    <th class="product-thumbnail">Image</th>
                                     <th class="product-name">Product</th>
-                                    <th class="product-price">Price</th>
                                     <th class="product-quantity">Quantity</th>
-                                    <th class="product-subtotal">Total</th>
+                                    <th class="product-price">Price</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -57,16 +56,14 @@
                                     <td class="product-name">
                                         <a class="title" href="{{ route('product.details', ['slug' => $item['product_slug']]) }}">{{$item['product_name']}}</a>
                                     </td>
-                                    <td class="product-price price_td">
-                                        <strong> ৳<span class="price">{{$item['product_price']}}</span></strong>
-                                    </td>
+                                   
                                     <td class="product-quantity qty_td">
                                         <div class="pro-qty numbers-row cart_qty_change" data-cart_product_id="{{ $key }}">
                                             <input type="text" class="quantity qty2"  value="{{$item['qty']}}" id="{{ 'qty_' . $key }}" name="quantity_1">
                                         </div>
                                     </td>
-                                    <td class="product-subtotal">
-                                        <span class="price">৳{{$item['product_price'] * $item['qty']}}</span>
+                                    <td class="product-price price_td">
+                                        <strong> ৳<span class="price">{{$item['product_price']}}</span></strong>
                                     </td>
                                 </tr>
                                 @endforeach
