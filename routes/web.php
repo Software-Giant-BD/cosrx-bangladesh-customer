@@ -1,18 +1,24 @@
 <?php
 
-use App\Http\Controllers\AccountController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\WishController;
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IngredientController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SkinConcernController;
-use App\Http\Controllers\WishController;
-use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::group(['prefix' => 'brand', 'as' => 'brand.'], function () {
+    Route::get('{slug}/products', [BrandController::class, 'products'])->name('products');
+    Route::get('load-product/{brand_id}/{dataCount}', [BrandController::class, 'loadProduct'])->name('products.load');
+});
 
 Route::group(['prefix' => 'category-wise', 'as' => 'category.'], function () {
     Route::get('products/{slug?}', [CategoryController::class, 'categoryWiseProduct'])->name('products');
