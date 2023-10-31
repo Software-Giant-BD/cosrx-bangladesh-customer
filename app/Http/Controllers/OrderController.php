@@ -2,21 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\SmsService;
-use Illuminate\Http\Request;
-use App\Services\BkashService;
-use App\Services\CustomerService;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
-use App\Http\Controllers\Controller;
-use App\Services\SslCommerzeService;
 use App\Jobs\SendFacebookConversionEvent;
 use App\Repositories\Interface\ICartRepository;
-use App\Repositories\Interface\IOrderRepository;
 use App\Repositories\Interface\ICouponRepository;
 use App\Repositories\Interface\IInvoiceRepository;
-use App\Repositories\Interface\IProductRepository;
+use App\Repositories\Interface\IOrderRepository;
 use App\Repositories\Interface\IOrderStatusRepoSitory;
+use App\Repositories\Interface\IProductRepository;
+use App\Services\BkashService;
+use App\Services\CustomerService;
+use App\Services\SmsService;
+use App\Services\SslCommerzeService;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class OrderController extends Controller
 {
@@ -41,9 +40,9 @@ class OrderController extends Controller
     private $bkashService;
 
     public function __construct(IInvoiceRepository $mainRepo, IOrderRepository $orderRepo,
-    IOrderStatusRepoSitory $orderStatusRepo, IProductRepository $productRepo,
-    ICartRepository $cartRepo, CustomerService $custService, SslCommerzeService $sslService,
-    ICouponRepository $couponRepo, SmsService $smsService, BkashService $bkashService, )
+        IOrderStatusRepoSitory $orderStatusRepo, IProductRepository $productRepo,
+        ICartRepository $cartRepo, CustomerService $custService, SslCommerzeService $sslService,
+        ICouponRepository $couponRepo, SmsService $smsService, BkashService $bkashService, )
     {
         $this->mainRepo = $mainRepo;
         $this->orderRepo = $orderRepo;
@@ -68,7 +67,7 @@ class OrderController extends Controller
             }
             $this->smsService->sendNonMaskinSms($mobile, $text);
             $response = ['result' => 'success', 'mgs' => 'Order confirmation otp send to your number', 'data' => $otp];
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $response = ['result' => 'warning', 'mgs' => $e->getMessage(), 'data' => null];
         }
 
@@ -160,7 +159,7 @@ class OrderController extends Controller
 
             session()->forget('cart');
             $this->cartRepo->deleteUserCart($data['customer_id']);
-            
+
             SendFacebookConversionEvent::dispatch($invoiceStore);
             DB::commit();
 
@@ -182,7 +181,7 @@ class OrderController extends Controller
             } else {
                 $this->orderSms($data['invoice'], $data['mobile']);
             }
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             Log::alert($e->getMessage());
             DB::rollback();
 
@@ -208,8 +207,8 @@ class OrderController extends Controller
             $result = $this->mainRepo->updateByDoc_no($updateData, $data['tran_id']);
 
             $update_product = DB::table('payment_transections')
-            ->where('transaction_id', $data['tran_id'])
-            ->update(['status' => 'Complete']);
+                ->where('transaction_id', $data['tran_id'])
+                ->update(['status' => 'Complete']);
 
             $text = 'Order completed ('.$result->invoice.')';
             $this->orderSms($result->invoice, $result->mobile);
@@ -247,6 +246,7 @@ class OrderController extends Controller
     public function complete($text = null)
     {
         return $text;
+
         return view('order.complete', compact('text'));
     }
 

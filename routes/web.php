@@ -1,16 +1,16 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\WishController;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AccountController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IngredientController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SkinConcernController;
+use App\Http\Controllers\WishController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -60,7 +60,6 @@ Route::group(['prefix' => 'order', 'as' => 'order.'], function () {
     Route::get('tracking-request', [OrderController::class, 'trackingRequest'])->name('tracking.request');
 });
 
-
 //account and login
 Route::group(['middleware' => ['isLogin']], function () {
     Route::get('logout', [AccountController::class, 'logout'])->name('logout');
@@ -86,12 +85,11 @@ Route::group(['prefix' => 'password-otp', 'as' => 'password.otp.'], function () 
     Route::POST('update-password', [AccountController::class, 'forgetPasswordUpdate'])->name('update.password');
 });
 
-
- // product details by slug
- Route::group(['prefix' => 'products', 'as' => 'product.'], function () {
+// product details by slug
+Route::group(['prefix' => 'products', 'as' => 'product.'], function () {
     Route::get('list', [ProductController::class, 'index'])->name('index');
     Route::get('/{slug}', [ProductController::class, 'detailsBySlug'])->name('details');
     Route::get('search', [ProductController::class, 'search'])->name('search');
     Route::get('filter', [ProductController::class, 'filter'])->name('filter');
     Route::get('load-product/{dataCount}', [ProductController::class, 'loadIndexProduct'])->name('index.load');
- });
+});

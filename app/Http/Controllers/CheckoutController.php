@@ -25,6 +25,7 @@ class CheckoutController extends Controller
             'mobile' => session('mobile', ''),
             'address' => session('address', ''),
         ];
+
         return view('checkout.index', ['user' => $user]);
     }
 }

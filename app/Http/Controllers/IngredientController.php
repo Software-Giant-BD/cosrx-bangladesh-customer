@@ -8,7 +8,6 @@ use App\Repositories\Interface\IProductRepository;
 
 class IngredientController extends Controller
 {
-    
     private $mainRepo;
 
     private $productRepo;
@@ -21,7 +20,7 @@ class IngredientController extends Controller
 
     public function ingredientWiseProduct($slug, $name = null)
     {
-        $info = Ingredient::where("slug", $slug)->first();
+        $info = Ingredient::where('slug', $slug)->first();
         if (! isset($info)) {
             return redirect(route('home'));
         }

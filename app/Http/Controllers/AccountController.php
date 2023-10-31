@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Interface\ICartRepository;
+use App\Repositories\Interface\ICustomerRepository;
+use App\Repositories\Interface\IWishRepository;
 use App\Services\SmsService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
-use App\Repositories\Interface\ICartRepository;
-use App\Repositories\Interface\IWishRepository;
-use App\Repositories\Interface\ICustomerRepository;
+use Illuminate\Support\Facades\Log;
 
 class AccountController extends Controller
 {
@@ -21,7 +21,7 @@ class AccountController extends Controller
     private $smsService;
 
     public function __construct(ICustomerRepository $mainRepo, ICartRepository $cartRepo,
-    IWishRepository $wishRepo, SmsService $smsService)
+        IWishRepository $wishRepo, SmsService $smsService)
     {
         $this->mainRepo = $mainRepo;
         $this->cartRepo = $cartRepo;
@@ -112,9 +112,10 @@ class AccountController extends Controller
                 throw new \Exception("Name or mobile can't be empty!");
             }
 
-            if(strlen($request->password) != 11)
-                throw new \Exception("Mobile should be 11 digit");
-            
+            if (strlen($request->password) != 11) {
+                throw new \Exception('Mobile should be 11 digit');
+            }
+
             if ($this->mainRepo->customerByMobile($request->mobile)) {
                 throw new \Exception('Customer Exist with this number!');
             }
@@ -207,7 +208,7 @@ class AccountController extends Controller
             $this->setCartNWishSession($customer->id);
 
             return redirect(route('home'));
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             Log::alert($e->getMessage());
 
             return back()->withInput()->with('warning', $e->getMessage());
@@ -250,7 +251,7 @@ class AccountController extends Controller
             session()->put('forgetMobile', $mobile);
             $text = 'Please use '.$otp.' this otp for change password -The Mart Bangladesh';
             $this->smsService->sendNonMaskinSms($mobile, $text);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             Log::alert($e->getMessage());
 
             return back()->withInput()->with('warning', $e->getMessage());
@@ -299,7 +300,7 @@ class AccountController extends Controller
         return redirect(route('home'))->with('success', 'Password update successfully done!');
     }
 
-     ///google auth
+    ///google auth
     public function redirectToGoogle()
     {
         return Socialite::driver('google')->redirect();

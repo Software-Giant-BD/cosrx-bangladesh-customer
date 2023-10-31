@@ -69,7 +69,7 @@ class CartController extends Controller
 
     public function index()
     {
-        return view('customer.cart.index');
+        return view('cart.index');
     }
 
     public function addToCartDatabase($cart, $product_offer_discount_price)
