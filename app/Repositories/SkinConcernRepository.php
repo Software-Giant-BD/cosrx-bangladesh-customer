@@ -19,6 +19,6 @@ class SkinConcernRepository extends Repository implements ISkinConcernRepository
 
     public function skinConcernForApi()
     {
-        return SkinConcern::select('id', 'slug','name', 'short_description', 'mtitle', 'mkeyword', 'mdescription', DB::raw("CONCAT('$this->adminUrl',image) AS image"))->get();
+        return SkinConcern::select('id', 'slug', 'name', 'short_description', 'mtitle', 'mkeyword', 'mdescription', DB::raw("CONCAT('$this->adminUrl',image) AS image"))->get();
     }
 }

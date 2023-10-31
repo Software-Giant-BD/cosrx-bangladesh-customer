@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use Illuminate\Http\Request;
-use App\Services\FilterService;
+use App\Models\RelatedProduct;
 use App\Repositories\Interface\IProductRepository;
 use App\Repositories\Interface\IProductReviewRepository;
-use App\Models\RelatedProduct;
-
+use App\Services\FilterService;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -65,18 +64,19 @@ class ProductController extends Controller
 
     public function detailsBySlug($slug)
     {
-        
-        $product = Product::with("category:id,name")->withCount("review")->whereSlug($slug)->first();
+
+        $product = Product::with('category:id,name')->withCount('review')->whereSlug($slug)->first();
         if (! $product) {
             return back()->with('warning', 'Product not found!');
         }
         $reviews = $this->reviewRepo->productWiseReview($product->id);
         $related_products = $this->relatedProducts($product->id);
-        return view("products.details.index",compact("product",'related_products', 'reviews'));
-       
+
+        return view('products.details.index', compact('product', 'related_products', 'reviews'));
+
     }
 
-    function relatedProducts($product_id)
+    public function relatedProducts($product_id)
     {
         return RelatedProduct::select(
             'products.id',
@@ -136,11 +136,10 @@ class ProductController extends Controller
             $rating = $this->reviewRepo->getRating($data['product_id']);
             $product_data['rating'] = round($rating);
             $update_product = $this->mainRepo->update($product_data, $data['product_id']);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             return back()->with('warning', $e->getMessage())->withInput();
         }
 
         return redirect(route('products.details', ['id' => $request->product_id]))->with('success', 'Review successfully submit!');
     }
 }
-

@@ -20,7 +20,7 @@ class SkinConcernController extends Controller
 
     public function skinConcernWiseProduct($slug, $name = null)
     {
-        $info = SkinConcern::where("slug", $slug)->first();
+        $info = SkinConcern::where('slug', $slug)->first();
         if (! isset($info)) {
             return redirect(route('home'));
         }
