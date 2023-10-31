@@ -52,40 +52,7 @@
 
     @include("home.top-sale")
 
-    <!--== Start Brand Logo Area Wrapper ==-->
-    <div class="section-space pt-0">
-        <div class="container">
-            <div class="swiper brand-logo-slider-container">
-                <div class="swiper-wrapper align-items-center">
-                    <div class="swiper-slide brand-logo-item">
-                        <!--== Start Brand Logo Item ==-->
-                        <img src="{{ asset('assets/images/brand-logo/1.webp') }}" width="155" height="110"
-                            alt="Image-HasTech">
-                        <!--== End Brand Logo Item ==-->
-                    </div>
-                    <div class="swiper-slide brand-logo-item">
-                        <!--== Start Brand Logo Item ==-->
-                        <img src="{{ asset('assets/images/brand-logo/2.webp') }}" width="241" height="110"
-                            alt="Image-HasTech">
-                        <!--== End Brand Logo Item ==-->
-                    </div>
-                    <div class="swiper-slide brand-logo-item">
-                        <!--== Start Brand Logo Item ==-->
-                        <img src="{{ asset('assets/images/brand-logo/3.webp') }}" width="147" height="110"
-                            alt="Image-HasTech">
-                        <!--== End Brand Logo Item ==-->
-                    </div>
-                    <div class="swiper-slide brand-logo-item">
-                        <!--== Start Brand Logo Item ==-->
-                        <img src="{{ asset('assets/images/brand-logo/4.webp') }}" width="196" height="110"
-                            alt="Image-HasTech">
-                        <!--== End Brand Logo Item ==-->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--== End Brand Logo Area Wrapper ==-->
+    @include("home.brands")
 
     <!--== Start Blog Area Wrapper ==-->
     <section class="section-space pt-0">
