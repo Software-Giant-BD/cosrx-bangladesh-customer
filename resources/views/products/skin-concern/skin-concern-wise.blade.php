@@ -4,7 +4,7 @@
 @section('keywords', $info->mkeyword)
 
 @section('main')
-@include("home.slider")
+<x-slide  />
 <section class="section-space pt-0 mt-5">
     <div class="container">
         <div class="row">

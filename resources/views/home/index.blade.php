@@ -1,7 +1,6 @@
 @extends('layouts.index')
 @section('main')
-   @include("home.slider")
-
+   <x-slide  />
     <!--== Start Product Banner Area Wrapper ==-->
     <section class="section-space">
         <div class="container">
