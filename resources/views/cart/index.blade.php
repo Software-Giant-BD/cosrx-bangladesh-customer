@@ -79,8 +79,8 @@
                         <div class="coupon-wrap">
                             <h4 class="title">Coupon</h4>
                             <p class="desc">Enter your coupon code if you have one.</p>
-                            <input type="text" class="form-control" placeholder="Coupon code">
-                            <button type="button" class="btn-coupon">Apply coupon</button>
+                            <input type="text" class="form-control"  id="coupon_code" name="coupon_code" placeholder="Coupon code">
+                            <button type="button" class="btn-coupon" id="coupon_redeem">Apply coupon</button>
                         </div>
                     </div>
                     <div class="col-12 col-lg-6">
@@ -126,5 +126,40 @@
 @section('js')
     @include('mgs.sweet-alert')
     @include('cart.cart-js')
-   
+    <script>
+        $(document).ready(function() {
+            $("#coupon_redeem").click(function() {
+                $("#show_coupon_amount").text(0)
+                let coupon_code = $("#coupon_code").val();
+                var url = '{{ route('coupon.redeem', ':coupon_code') }}';
+                url = url.replace(':coupon_code', coupon_code);
+                $.ajax({
+                    url: url,
+                    type: 'get',
+                    success: function(response) {
+
+                        if (response.result == "success") {
+                            if (response.data.coupon_discount)
+                                $("#show_coupon_amount").text(response.data.coupon_discount)
+                            else
+                                $("#show_coupon_amount").text(0)
+                        }
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            icon: response.result,
+                            title: response.mgs,
+                            showConfirmButton: false,
+                            background: '#EDF8FC',
+                            timer: 2000
+                        })
+                        calculate();
+                    },
+                    error: function(xhr, status, error) {
+                        calculate();
+                    }
+                });
+            })
+        })
+    </script>
 @endsection
