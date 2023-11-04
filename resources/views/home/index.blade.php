@@ -36,18 +36,17 @@
 
     @include("home.best-products")
 
-    <!--== Start Product Banner Area Wrapper ==-->
-    <section class="section-space pt-0">
-        <div class="container">
-            <!--== Start Product Category Item ==-->
-            <a href="product.html" class="product-banner-item">
-                <img src="{{ asset('assets/images/shop/banner/7.webp') }}" width="1170" height="240"
-                    alt="Image-HasTech">
-            </a>
-            <!--== End Product Category Item ==-->
-        </div>
-    </section>
-    <!--== End Product Banner Area Wrapper ==-->
+    @if (isset($data['feature_slide']))
+        <section class="section-space pt-0">
+            <div class="container">
+                <a href="{{ $data['feature_slide']->redirect_url }}" class="product-banner-item">
+                    <img src="{{ env('Admin_url_public').$data['feature_slide']->image }}" width="1170" height="240"
+                        alt="{{ $data['feature_slide']->title }}">
+                </a>
+            </div>
+        </section>
+    @endif
+    
 
     @include("home.top-sale")
 

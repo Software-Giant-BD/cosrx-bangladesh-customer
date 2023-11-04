@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Slider;
 use App\Models\Product;
 use App\Services\FilterService;
 use App\Services\DefaultSessionService;
@@ -51,6 +52,8 @@ class HomeController extends Controller
             ->get();
         $data['brand'] = $this->brandRepo->withLimit(10);
         $data['latest_post'] = $this->blogRepo->getLatestBlog(6);
+        $data['feature_slide'] = Slider::select('id', 'redirect_url', 'feature', 'title','image')
+        ->where('feature', '1')->first();
         return view('home.index', compact('data'));
     }
 }
