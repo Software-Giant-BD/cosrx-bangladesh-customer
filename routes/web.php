@@ -95,8 +95,8 @@ Route::group(['prefix' => 'password-otp', 'as' => 'password.otp.'], function () 
 Route::group(['prefix' => 'products', 'as' => 'product.'], function () {
     Route::get('feature', [ProductController::class, 'featureProduct'])->name('feature');
     Route::get('list', [ProductController::class, 'index'])->name('index');
-    Route::get('/{slug}', [ProductController::class, 'detailsBySlug'])->name('details');
     Route::get('search', [ProductController::class, 'search'])->name('search');
     Route::get('filter', [ProductController::class, 'filter'])->name('filter');
     Route::get('load-product/{dataCount}', [ProductController::class, 'loadIndexProduct'])->name('index.load');
+    Route::get('/{slug}', [ProductController::class, 'detailsBySlug'])->name('details');
 });

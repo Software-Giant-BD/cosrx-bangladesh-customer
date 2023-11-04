@@ -27,8 +27,7 @@ class ProductController extends Controller
     public function search(Request $request)
     {
         $text = $request->text;
-        $data = $this->mainRepo->search($text, $skip = 0, $take = 12);
-
+        $data = $this->mainRepo->search($text, $skip = 0, $take = 20);
         return view('products.filter-search.search', compact('text', 'data'));
     }
 
