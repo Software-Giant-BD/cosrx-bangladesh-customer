@@ -40,7 +40,6 @@ class CategoryController extends Controller
     {
         $info = $this->mainRepo->get($category_id);
         $data = $this->productRepo->categoryWiseWithOffSet($category_id, $dataCount, 20);
-        Log::info($data);
 
         return view('products.category.load-category-wise', compact('data', 'dataCount', 'info'));
     }

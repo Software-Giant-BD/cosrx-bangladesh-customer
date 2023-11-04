@@ -1,7 +1,5 @@
 @extends('layouts.index')
-@section('title', $info->name . ' Products')
-@section('description', $info->mdescription)
-@section('keywords', $info->mkeyword)
+
 
 @section('main')
     <x-slide />
@@ -9,8 +7,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12" style="margin-bottom: 50px">
-                    <h2 class="title">{{ $info ? $info->name : 'Brand Wise' }} Products</h2>
-                    <p class="m-0">{{ $info?->mdescription }}</p>
+                    <h2 class="title">Feature Products</h2>
                 </div>
             </div>
             <div class="row mb-n4 mb-sm-n10 g-3 g-sm-6" id="load-data">
@@ -76,7 +73,6 @@
                         <!--== End prPduct Item ==-->
                     </div>
                 @endforeach
-                <p class="load-more" dataCount="{{ $dataCount }}" dataId={{ $info->id }}></p>
             </div>
         </div>
     </section>
@@ -84,16 +80,4 @@
 @endsection
 @section('js')
     @include('products.product-cart-quick-view')
-
-    <script src="{{ asset('assets/js/load-data.js') }}"></script>
-
-    <script>
-        $(document).ready(function() {
-            var dataId = $('.load-more').attr('dataId');
-            console.log(dataId);
-            var url = '/category-wise/load-product/' + dataId;
-            loadData(url)
-        }); //document ready end
-    </script>
-
 @endsection

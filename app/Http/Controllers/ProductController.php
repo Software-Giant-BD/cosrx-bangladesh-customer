@@ -142,4 +142,13 @@ class ProductController extends Controller
 
         return redirect(route('products.details', ['id' => $request->product_id]))->with('success', 'Review successfully submit!');
     }
+
+    public function featureProduct()
+    {
+        $data = Product::published()->withCount('review')
+            ->where('feature_product', 'Yes')
+            ->get();
+       
+        return view('products.feature-product', compact('data'));
+    }
 }

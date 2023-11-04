@@ -91,9 +91,8 @@
         $(document).ready(function() {
             var dataId = $('.load-more').attr('dataId');
             console.log(dataId);
-            var url = '/category-wise/load-product/' + dataId;
+            var url = '/brand/load-product/' + dataId;
             loadData(url)
         }); //document ready end
     </script>
-
 @endsection
