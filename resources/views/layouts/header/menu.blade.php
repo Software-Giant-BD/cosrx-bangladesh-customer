@@ -6,14 +6,9 @@
             <x-category-list />
             <x-skin-concern-list />
             <x-ingredient-list />
-            <li class="has-submenu"><a href="account-login.html">Rewards</a>
-                <ul class="submenu-nav">
-                    <li><a href="account-login.html">My Account</a></li>
-                    <li><a href="faq.html">Frequently Questions</a></li>
-                    <li><a href="page-not-found.html">Page Not Found</a></li>
-                </ul>
+            <li class="has-submenu"><a href="{{ route('reward.index') }}">Rewards</a>
             </li>
-            <li><a href="contact.html">Guide</a></li>
+            <li><a href="{{ route('guide.index') }}">Guide</a></li>
         </ul>
     </div>
 </div>

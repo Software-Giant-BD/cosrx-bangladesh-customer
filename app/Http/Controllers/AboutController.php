@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guide;
+use App\Models\Reward;
 use Illuminate\Http\Request;
 use App\Repositories\Interface\IAboutRepository;
 use App\Repositories\Interface\ITermsRepository;
@@ -28,8 +30,23 @@ class AboutController extends Controller
     public function termsAndCondition()
     {
         $data = $this->termsRepo->first();
+        $title = "Terms and condition";
+        return view('terms-condition.index', compact('data','title'));
+    }
 
-        return view('terms-condition.index', compact('data'));
+    public function reward()
+    {
+        $data = Reward::first();
+        $title = "You can get Rewards";
+        return view('terms-condition.index', compact('data','title'));
+    }
+
+    public function guide()
+    {
+        $data = Guide::first();
+        $title = "Follow our Guide";
+
+        return view('terms-condition.index', compact('data','title'));
     }
 }
 
