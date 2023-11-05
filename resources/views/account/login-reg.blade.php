@@ -81,7 +81,3 @@
 </main>
 @endsection
 
-@section('js')
-   @include("mgs.sweet-alert")
-@endsection
-

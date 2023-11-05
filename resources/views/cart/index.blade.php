@@ -121,7 +121,6 @@
 @endsection
 
 @section('js')
-    @include('mgs.sweet-alert')
     @include('cart.cart-js')
     <script>
         $(document).ready(function() {

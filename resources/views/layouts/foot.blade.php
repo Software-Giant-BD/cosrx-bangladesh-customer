@@ -89,3 +89,4 @@
   }
     //sweet alert function
 </script>
+@include('mgs.sweet-alert')
