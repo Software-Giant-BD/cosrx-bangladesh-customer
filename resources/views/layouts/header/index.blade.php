@@ -58,7 +58,7 @@
     </div>
     <div style="background-color: #f4f6f8;" class="row align-items-center resnav">
         <div class="col-lg-12 col-xl-12">
-            <h5 class="msg-title text-center py-lg-2">FREE SHIPPING ON ORDERS $50+</h5>
+            <h5 class="msg-title text-center py-lg-2">FREE SHIPPING ON OVER 2500 BDT</h5>
         </div>
     </div>
 </header>

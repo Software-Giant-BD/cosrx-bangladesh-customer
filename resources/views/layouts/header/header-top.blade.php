@@ -13,7 +13,7 @@
         </div>
           
         <div class="accouncement-bar-middle">
-            <p>Refer a Friend ｜ GIVE $15, GET $15 </p>
+            <p>Purchase all the Products in special price </p>
         </div>
         <div class="announcement-right"></div>
     </div>
