@@ -1,5 +1,5 @@
 <header class="header-area sticky-header header-transparent">
-    @include('layouts.header.header-top')
+    <x-header/>
     @include('layouts.header.mobile-main-header')
 
     <!-- Header Main -->
