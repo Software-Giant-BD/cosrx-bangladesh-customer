@@ -8,6 +8,7 @@ use App\Http\Controllers\WishController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
@@ -110,4 +111,8 @@ Route::group(['prefix' => 'blog', 'as' => 'blog.'], function () {
     Route::get('category-wise/{id}/{name?}', [BlogController::class, 'categoryWiseBlog'])->name('category.wise');
     Route::get('tag-wise/{tag}', [BlogController::class, 'tagWiseBlog'])->name('tag.wise');
     Route::get('search', [BlogController::class, 'search'])->name('search');
+});
+
+Route::group(['prefix' => 'subscriber', 'as' => 'subscriber.'], function () {
+    Route::post('store', [GeneralController::class, 'subscriberStore'])->name('store');
 });
