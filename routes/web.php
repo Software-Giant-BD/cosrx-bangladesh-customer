@@ -14,6 +14,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\SkinConcernController;
+use App\Http\Controllers\AboutController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -115,4 +116,12 @@ Route::group(['prefix' => 'blog', 'as' => 'blog.'], function () {
 
 Route::group(['prefix' => 'subscriber', 'as' => 'subscriber.'], function () {
     Route::post('store', [GeneralController::class, 'subscriberStore'])->name('store');
+});
+
+
+Route::group(['prefix' => 'about', 'as' => 'about.'], function () {
+    Route::get('/', [AboutController::class, 'index'])->name('index');
+});
+Route::group(['prefix' => 'terms-and-condition', 'as' => 'terms.condion.'], function () {
+    Route::get('/', [AboutController::class, 'termsAndCondition'])->name('index');
 });
