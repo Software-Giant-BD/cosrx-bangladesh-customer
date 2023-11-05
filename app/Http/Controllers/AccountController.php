@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\Interface\ICartRepository;
-use App\Repositories\Interface\ICustomerRepository;
-use App\Repositories\Interface\IWishRepository;
 use App\Services\SmsService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Hash;
+use App\Repositories\Interface\ICartRepository;
+use App\Repositories\Interface\IWishRepository;
+use App\Repositories\Interface\IInvoiceRepository;
+use App\Repositories\Interface\ICustomerRepository;
 
 class AccountController extends Controller
 {
@@ -19,21 +20,24 @@ class AccountController extends Controller
     private $wishRepo;
 
     private $smsService;
+    private $invoiceRepo;
 
     public function __construct(ICustomerRepository $mainRepo, ICartRepository $cartRepo,
-        IWishRepository $wishRepo, SmsService $smsService)
+        IWishRepository $wishRepo, SmsService $smsService,IInvoiceRepository $invoiceRepo)
     {
         $this->mainRepo = $mainRepo;
         $this->cartRepo = $cartRepo;
         $this->wishRepo = $wishRepo;
         $this->smsService = $smsService;
+        $this->invoiceRepo = $invoiceRepo;
+
     }
 
     public function index()
     {
         $active = 'personal';
-
-        return view('account.profile.personal-info', compact('active'));
+        $data['my_order'] = $this->invoiceRepo->myOrders(session('id'));
+        return view('account.profile.personal-info', compact('active','data'));
     }
 
     public function changePasswordEdit()
