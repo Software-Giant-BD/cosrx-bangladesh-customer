@@ -18,7 +18,7 @@
 
     {{--  Open Graph Protocol --}}
     <meta property="og:title" content="@yield("open_graph_title",config('meta_info.og_title'))">
-    <meta property="og:site_name" content="The Mart Bangladesh">
+    <meta property="og:site_name" content="COSRX Bangladesh">
     <meta property="og:url" content="{{$current_url}}" />
     <meta property="og:description" content="@yield('open_graph_description', config('meta_info.og_description'))">
     <meta property="og:type" content="{{ config('meta_info.og_type') }}">
@@ -32,7 +32,7 @@
     
     <meta name="facebook-domain-verification" content="xrkm2kfvu3fbu4szqmk8bu2kcjqm9n" />
     
-       <!-- Facebook Pixel Code -->
+    <!-- Meta Pixel Code -->
     <script>
         !function(f,b,e,v,n,t,s)
         {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -40,17 +40,16 @@
         if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
         n.queue=[];t=b.createElement(e);t.async=!0;
         t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window,document,'script',
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '213071804855522'); 
+        fbq('init', '1478896736229038');
         fbq('track', 'PageView');
     </script>
     <noscript>
-        <img height="1" width="1" 
-        src="https://www.facebook.com/tr?id=213071804855522&ev=PageView
-        &noscript=1"/>
+        <img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=1478896736229038&ev=PageView&noscript=1"/>
     </noscript>
-    <!-- End Facebook Pixel Code -->
+    <!-- End Meta Pixel Code -->
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/images/favicon.webp')}}')}}">
