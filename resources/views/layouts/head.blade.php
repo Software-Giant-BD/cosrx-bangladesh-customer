@@ -52,7 +52,7 @@
     <!-- End Meta Pixel Code -->
 
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/images/favicon.webp')}}')}}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/images/favicon.webp')}}">
 
     <!-- CSS (Font, Vendor, Icon, Plugins & Style CSS files) -->
 
