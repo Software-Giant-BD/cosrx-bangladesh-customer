@@ -1,6 +1,14 @@
 @extends('layouts.index')
 @section('main')
 <main class="main-content">
+    <nav aria-label="breadcrumb" class="breadcrumb-style1">
+        <div class="container">
+            <ol class="breadcrumb justify-content-center">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Blog</li>
+            </ol>
+        </div>
+    </nav>
     <!--== Start Blog Area Wrapper ==-->
     <section class="section-space pb-0">
         <div class="container">
