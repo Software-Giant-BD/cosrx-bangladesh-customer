@@ -39,7 +39,7 @@ class BlogRepository extends Repository implements IBlogRepository
     public function getLatestBlog($limit = null)
     {
         $query = $this->modelName::with('category:id,name')
-            ->select('id', 'title', 'created_at', 'image')
+            ->select('id', 'category_id','description','title', 'created_at', 'image')
             ->orderBy('created_at', 'desc');
         if ($limit) {
             $query = $query->take($limit)->get();
