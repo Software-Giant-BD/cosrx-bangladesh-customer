@@ -17,12 +17,13 @@
                     $dashboard = "";
                     $order = "";
                     $account = "";
-                    if ($active=='dashboard')
-                        $dashboard = "active";
-                    else if($active == 'order')
+                    
+                    if($active == 'order')
                         $order = 'active';
                     else if($active == 'account')
                         $account = 'active';
+                    else 
+                        $dashboard = "active";
 
                 @endphp
                 <div class="col-lg-3 col-md-4">

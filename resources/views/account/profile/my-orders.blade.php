@@ -1,4 +1,4 @@
-<div class="tab-pane fade  {{ $order }}" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+<div class="tab-pane fade show  {{ $order }}" id="orders" role="tabpanel" aria-labelledby="orders-tab">
     <div class="myaccount-content">
         <h3>Orders</h3>
         <div class="myaccount-table table-responsive text-center">

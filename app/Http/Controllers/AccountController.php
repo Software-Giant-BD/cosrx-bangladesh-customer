@@ -35,7 +35,6 @@ class AccountController extends Controller
 
     public function index()
     {
-        session()->put('active','dashboard');
         $data['my_order'] = $this->invoiceRepo->myOrders(session('id'));
         return view('account.profile.personal-info', compact('data'));
     }
