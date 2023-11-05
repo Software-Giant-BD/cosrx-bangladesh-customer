@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 if (! function_exists('limitWords')) {
     function limitWords($text, $limit = 5)
     {
@@ -12,5 +14,13 @@ if (! function_exists('limitWords')) {
 
             return $limitedWords.$ellipsis;
         }
+    }
+}
+
+if (! function_exists('formatCreatedAt')) {
+    function formatCreatedAt($text, $limit = 5)
+    {
+        $originalDate = "2023-03-29 15:15:30";
+        return Carbon::parse($originalDate)->format('F d, Y');
     }
 }
