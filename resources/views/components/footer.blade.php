@@ -4,7 +4,7 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="widget-item">
                         <div class="widget-about">
-                            <a class="widget-logo" href="index.html">
+                            <a class="widget-logo" href="{{ route('home') }}">
                                 <img src="{{ asset('assets/images/logo.png') }}" width="95" height="68"
                                     alt="Logo">
                             </a>
@@ -18,7 +18,7 @@
                         <ul class="widget-nav">
                             <li><a href="{{ route('blog.index') }}">Blog</a></li>
                             <li><a href="{{ route('about.index') }}">About us</a></li>
-                            <li><a href="faq.html">Privacy</a></li>
+                            <li><a href="{{ route('terms.condion.index') }}">Terms and condition</a></li>
                             <li><a href="{{ route('login.reg.create') }}">Login</a></li>
                             <li><a href="{{ route('account.personal.info') }}">My Account</a></li>
                         </ul>
