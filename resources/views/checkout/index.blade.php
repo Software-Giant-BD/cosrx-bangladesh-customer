@@ -117,7 +117,6 @@
 @endsection
 
 @section('js')
-    @include('mgs.sweet-alert')
     <script>
         function calculate() {
             let subTotal = parseFloat($("#subTotal").val());

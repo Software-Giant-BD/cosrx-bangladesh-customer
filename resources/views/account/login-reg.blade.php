@@ -37,7 +37,7 @@
                                 <div class="form-group d-flex align-items-center mb-14">
                                     <button class="btn" type="submit">Login</button>
                                 </div>
-                                <a class="lost-password" href="my-account.html">Lost your Password?</a>
+                                {{-- <a class="lost-password" href="#">Lost your Password?</a> --}}
                             </form>
                         </div>
                     </div>
@@ -79,9 +79,5 @@
     <!--== End Account Area Wrapper ==-->
 
 </main>
-@endsection
-
-@section('js')
-   @include("mgs.sweet-alert")
 @endsection
 
