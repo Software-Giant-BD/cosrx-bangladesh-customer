@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WishController;
@@ -99,4 +100,14 @@ Route::group(['prefix' => 'products', 'as' => 'product.'], function () {
     Route::get('filter', [ProductController::class, 'filter'])->name('filter');
     Route::get('load-product/{dataCount}', [ProductController::class, 'loadIndexProduct'])->name('index.load');
     Route::get('/{slug}', [ProductController::class, 'detailsBySlug'])->name('details');
+});
+
+//blog
+Route::group(['prefix' => 'blog', 'as' => 'blog.'], function () {
+    Route::get('/', [BlogController::class, 'index'])->name('index');
+    Route::get('details/{id}/{title?}', [BlogController::class, 'details'])->name('details');
+    Route::post('comment-store', [BlogController::class, 'commentStore'])->name('comment.store');
+    Route::get('category-wise/{id}/{name?}', [BlogController::class, 'categoryWiseBlog'])->name('category.wise');
+    Route::get('tag-wise/{tag}', [BlogController::class, 'tagWiseBlog'])->name('tag.wise');
+    Route::get('search', [BlogController::class, 'search'])->name('search');
 });
