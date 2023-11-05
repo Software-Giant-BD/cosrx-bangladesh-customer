@@ -1,4 +1,4 @@
-<div class="tab-pane fade" id="account-info" role="tabpanel" aria-labelledby="account-info-tab">
+<div class="tab-pane fade  {{ $account }}" id="account-info" role="tabpanel" aria-labelledby="account-info-tab">
     <div class="myaccount-content">
         <h3>Account Details</h3>
         <div class="account-details-form">

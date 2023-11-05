@@ -35,16 +35,9 @@ class AccountController extends Controller
 
     public function index()
     {
-        $active = 'personal';
+        session()->put('active','dashboard');
         $data['my_order'] = $this->invoiceRepo->myOrders(session('id'));
-        return view('account.profile.personal-info', compact('active','data'));
-    }
-
-    public function changePasswordEdit()
-    {
-        $active = 'password';
-
-        return view('account.profile.change-password', compact('active'));
+        return view('account.profile.personal-info', compact('data'));
     }
 
     public function changePasswordUpdate(Request $request)
@@ -69,8 +62,8 @@ class AccountController extends Controller
 
             return back()->withInput()->with('warning', $e->getMessage());
         }
-
-        return redirect(route('account.change.password.edit'))->with('success', 'Password update successfully done!');
+        session()->put('active','account');
+        return back()->with('success', 'Password update successfully done!');
     }
 
     public function update(Request $request)
@@ -102,8 +95,8 @@ class AccountController extends Controller
 
             return back()->withInput()->with('warning', $e->getMessage());
         }
-
-        return redirect(route('account.personal.info'))->with('success', 'Update successfully done!');
+        session()->put('active','account');
+        return back()->with('success', 'Update successfully done!');
     }
 
     public function registration(Request $request)
