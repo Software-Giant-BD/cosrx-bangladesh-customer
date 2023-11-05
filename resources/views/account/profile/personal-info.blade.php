@@ -1,7 +1,3 @@
-{{-- {{ "Hello, ".session('name') }}
-<br>
-<a href="{{ route('home') }}"> Back to home</a> <br>
-<a href="{{ route('logout') }}" > Logout</a> --}}
 
 @extends('layouts.index')
 @section('main')
@@ -28,7 +24,7 @@
                         <button class="nav-link active" id="dashboad-tab" data-bs-toggle="tab" data-bs-target="#dashboad" type="button" role="tab" aria-controls="dashboad" aria-selected="true">Dashboard</button>
                         <button class="nav-link" id="orders-tab" data-bs-toggle="tab" data-bs-target="#orders" type="button" role="tab" aria-controls="orders" aria-selected="false"> Orders</button>
                         <button class="nav-link" id="account-info-tab" data-bs-toggle="tab" data-bs-target="#account-info" type="button" role="tab" aria-controls="account-info" aria-selected="false">Account Details</button>
-                        <button class="nav-link" onclick="window.location.href='account-login.html'" type="button">Logout</button>
+                        <a class="nav-link" href="{{ route('logout') }}" type="button">Logout</a>
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-8">
