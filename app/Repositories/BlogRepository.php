@@ -36,6 +36,11 @@ class BlogRepository extends Repository implements IBlogRepository
         return $this->modelName::with('category:id,name')->get();
     }
 
+    function getRandomBlog()
+    {
+        return $this->modelName::inRandomOrder()->with('category:id,name')->get();
+    }
+
     public function getLatestBlog($limit = null)
     {
         $query = $this->modelName::with('category:id,name')

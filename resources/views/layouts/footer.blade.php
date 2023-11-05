@@ -17,7 +17,7 @@
                     <div class="widget-item">
                         <h4 class="widget-title">Information</h4>
                         <ul class="widget-nav">
-                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="{{ route('blog.index') }}">Blog</a></li>
                             <li><a href="about-us.html">About us</a></li>
                             <li><a href="contact.html">Contact</a></li>
                             <li><a href="faq.html">Privacy</a></li>
