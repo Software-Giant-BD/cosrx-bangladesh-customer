@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Repositories\Interface\IBlogRepository;
+use App\Repositories\Interface\IBlogCommentRepository;
+use App\Repositories\Interface\IBlogCategoryRepository;
 
 class BlogController extends Controller
 {
@@ -23,7 +26,8 @@ class BlogController extends Controller
     public function index()
     {
         $data = $this->leftSideData();
-        $data['post'] = $this->mainRepo->getBlogDesc();
+        $data['latest_post'] = $this->mainRepo->getLatestBlog(6);
+        $data['post'] = $this->mainRepo->getRandomBlog();
         $data['page_title'] = null;
 
         return view('blog.index', compact('data'));
