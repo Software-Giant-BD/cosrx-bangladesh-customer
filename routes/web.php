@@ -125,3 +125,9 @@ Route::group(['prefix' => 'about', 'as' => 'about.'], function () {
 Route::group(['prefix' => 'terms-and-condition', 'as' => 'terms.condion.'], function () {
     Route::get('/', [AboutController::class, 'termsAndCondition'])->name('index');
 });
+Route::group(['prefix' => 'reward', 'as' => 'reward.'], function () {
+    Route::get('/', [AboutController::class, 'reward'])->name('index');
+});
+Route::group(['prefix' => 'guide', 'as' => 'guide.'], function () {
+    Route::get('/', [AboutController::class, 'guide'])->name('index');
+});
