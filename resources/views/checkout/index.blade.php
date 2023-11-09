@@ -134,34 +134,39 @@
                 modal.modal("hide");
             })
 
-            //order confirm check
             $("#confirm_order").click(function() {
-                
-                let payment_method = $('input[name="payment_method"]:checked').val();
-                if (payment_method != "Bkash") {
-                    let modal = $("#default_modal");
-                    modal.modal('show');
-
-                    let mobile = $("#mobile").val();
-                    if (mobile.length != 11) {
-                        $("#sort_mgs").text("Please provide valid mobile first!");
-                    } else {
-                        var url = '{{ route('order.otp.send', ':mobile') }}';
-                        url = url.replace(':mobile', mobile);
-                        $.ajax({
-                            url: url,
-                            type: 'get',
-                            success: function(response) {
-                                console.log(response);
-                                $("#sort_mgs").text(response.mgs);
-                                otp = response.data;
-                            }
-                        });
-                    }
-                } else {
-                    $("#orderForm").submit();
-                }
+                $("#orderForm").submit();
             })
+
+            //otp and payment not applied here
+            //order confirm check
+            // $("#confirm_order").click(function() {
+                
+            //     let payment_method = $('input[name="payment_method"]:checked').val();
+            //     if (payment_method != "Bkash") {
+            //         let modal = $("#default_modal");
+            //         modal.modal('show');
+
+            //         let mobile = $("#mobile").val();
+            //         if (mobile.length != 11) {
+            //             $("#sort_mgs").text("Please provide valid mobile first!");
+            //         } else {
+            //             var url = '{{ route('order.otp.send', ':mobile') }}';
+            //             url = url.replace(':mobile', mobile);
+            //             $.ajax({
+            //                 url: url,
+            //                 type: 'get',
+            //                 success: function(response) {
+            //                     console.log(response);
+            //                     $("#sort_mgs").text(response.mgs);
+            //                     otp = response.data;
+            //                 }
+            //             });
+            //         }
+            //     } else {
+            //         $("#orderForm").submit();
+            //     }
+            // })
 
             //submit otp
             $("#submitOtp").click(function() {

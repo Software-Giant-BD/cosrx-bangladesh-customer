@@ -154,7 +154,7 @@ class OrderController extends Controller
                 session()->forget('coupon');
             }
 
-            $orderStatusStore = $this->orderStatusRepo->store($orderStatusData);
+            $this->orderStatusRepo->store($orderStatusData);
             $invoiceStore = $this->mainRepo->store($data);
 
             session()->forget('cart');
@@ -178,7 +178,8 @@ class OrderController extends Controller
                 $post_data['customer_id'] = $data['customer_id'];
 
                 return $this->bkashService->createPayment($post_data); //for payment
-            } else {
+            } 
+            else {
                 $this->orderSms($data['invoice'], $data['mobile']);
             }
         } catch (\Exception $e) {
@@ -187,8 +188,8 @@ class OrderController extends Controller
 
             return back()->with('warning', $e->getMessage())->withInput();
         }
-
-        return redirect(route('order.complete', ['text' => 'Order completed ('.$data['invoice'].')']));
+        return redirect(route('home'))->with("success", "Your order completed ($data[invoice])");
+        // return redirect(route('order.complete', ['text' => 'Order completed ('.$data['invoice'].')']));
     }
 
     public function orderSms($invoice, $mobile)
@@ -245,8 +246,6 @@ class OrderController extends Controller
 
     public function complete($text = null)
     {
-        return $text;
-
         return view('order.complete', compact('text'));
     }
 
