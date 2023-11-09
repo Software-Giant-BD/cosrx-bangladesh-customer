@@ -6,6 +6,7 @@
                 <thead class="thead-light">
                     <tr>
                         <th>Order</th>
+                        <th>Invoice</th>
                         <th>Date</th>
                         <th>Status</th>
                         <th>Total</th>
@@ -17,10 +18,11 @@
                         @foreach ($data['my_order'] as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
+                                <td>{{ $item->invoice }}</td>
                                 <td>{{ formatCreatedAt($item->created_at) }}</td>
                                 <td>{{ $item->status }}</td>
                                 <td>{{ "৳".$item->total_amt }}</td>
-                                <td><a href="#" class="check-btn sqr-btn ">View</a></td>
+                                <td><a href="{{ route('order.show.invoice',['invoice'=>$item->invoice]) }}" class="check-btn sqr-btn ">View</a></td>
                             </tr>
                         @endforeach
                     @endif
