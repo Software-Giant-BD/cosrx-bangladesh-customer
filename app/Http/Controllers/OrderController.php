@@ -78,11 +78,11 @@ class OrderController extends Controller
     {
         $latest = $this->mainRepo->latest();
         if (! $latest) {
-            return 'Mart0001';
+            return 'COSRX0001';
         }
         $string = preg_replace("/[^0-9\.]/", '', $latest->invoice);
 
-        return 'Mart'.sprintf('%04d', $string + 1);
+        return 'COSRX'.sprintf('%04d', $string + 1);
     }
 
     public function store(Request $request)
